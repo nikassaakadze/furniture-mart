@@ -1,6 +1,7 @@
 <?php
   include("includes/connect.php");
   include("functions/common.php");
+  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,17 +9,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ავეჯის მაღაზია || პროდუქტის დეტალები</title>
+  <!-- set favicon -->
+  <link rel="icon" type="image/png" href="./assets/ico/favicon.png">
+
   <!-- import local css file  -->
   <link rel="stylesheet" href="css/bundle.css">
+  
   <!-- import bootstrap icons   --CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/bpg-arial/css/bpg-arial.min.css">
-
 </head>
 <body>
-
-<?php addToCart(); ?>
 
 <!-- add to cart message start  -->
 <div class="alert-popup"> 
@@ -26,28 +27,47 @@
 </div>
 <!-- add to cart message end  -->
 
+<!-- hidden responsive serch  bar  -->
+<div class="search-responsive-nav">
+  <div class="search-responsive-nav-inner container"></div>
+</div>
+<!-- hidden responsive serch  bar  -->
+
 <!-- site top bar start  -->
 <div class="site-top-bar">
   <div class="d-flex-aic-jcsb top-bar-inner container">
     <div class="bar-inner-left">
       <span class="top-bar-item">
-        <a href="">კონტაქტი</a>
+        <a href="#">
+          <span>კონტაქტი</span>
+          <i class="bi bi-person-lines-fill"></i>
+        </a>
       </span>
       <span class="top-bar-item">
-        <a href="">ხშირად დასმული კითხვები</a>
+        <a href="#">
+          <span>ხშირად დასმული კითხვები</span>
+          <i class="bi bi-patch-question"></i>
+        </a>
       </span>
       <span class="top-bar-item">
-        <a href="">ბლოგი</a>
+        <a href="#">
+          <span>ბლოგი</span>
+          <i class="bi bi-flower3"></i>
+        </a>
       </span>
     </div>
     <div class="bar-inner-right d-flex">
       <span class="top-bar-item d-flex-aic">
-        <i class="bi bi-headphones"></i>
-        <a href="">+ 995 123 456</a>
+        <a href="#">
+          <i class="bi bi-headphones"></i>
+          <span>+ 995 123 456</span>
+        </a>
       </span>
       <span class="top-bar-item d-flex-aic">
-      <i class="bi bi-envelope"></i>
-        <a href="">Furniture@example.org</a>
+        <a href="#">
+          <i class="bi bi-envelope"></i>
+          <span>Furniture@example.org</span>
+        </a>
       </span>
     </div>
   </div>
@@ -55,7 +75,7 @@
 <!-- site top bar end  -->
 
 <!-- site main header start  -->
-<div class="main-header header-container">
+<div class="main-header">
   <header class="main-header-inner container d-flex-aic-jcsb">
     <div class="header-left-drawer">
       <div class="logo-drawer">
@@ -65,14 +85,25 @@
       </div>
     </div>
     <div class="header-middle-drawer d-flex-aic">
-    <nav class="status-bar-navigation nav-menu">
-      <ul class="status-bar-navigation-list d-flex">
-        <li class="bar-navigation-list-item"><a href="./index.php">მთავარი</a></li>
-        <li class="bar-navigation-list-item"><a href="./shop.php">შოპინგი</a></li>
-        <li class="bar-navigation-list-item"><a href="">დახმარება</a></li>
-        <li class="bar-navigation-list-item"><a href="">მისამართი</a></li>
-      </ul>
-    </nav>
+      <nav class="status-bar-navigation">
+        <ul class="status-bar-navigation-list d-flex">
+          <li class="bar-navigation-list-item">
+            <a href="./index.php">მთავარი</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="./shop.php">შოპინგი</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="">დახმარება</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="">მისამართი</a>
+          </li>
+        </ul>
+        <div class="menu-icon-hidden">
+          <i class="bi bi-list"></i>
+        </div>
+      </nav>
       <form class="main-search-form d-flex-aic" action="search.php" role="search">
         <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="text">
         <button class="search-button"  type="submit">
@@ -80,9 +111,27 @@
         </button>
       </form>
     </div>
-    <div class="header-right-drawer header-right-drawer-container d-flex">
-      <div class="activity-drawer register">
-        <span><i class="bi bi-person-circle"></i></span>
+    <div class="header-right-drawer d-flex">
+      <div class="activity-drawer register d-flex-aic">
+      <?php
+          if(isset($_SESSION['username'])){
+            ?>
+             <div class="user-logged-in d-flex-aic">
+              <div class="user-avatar">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
+              </div>
+              <small><?= $_SESSION['username']?></small>
+              <small class="log-out">
+                <a href="./functions/logout.php?"><i class="bi bi-box-arrow-in-left"></i></a>
+              </small>
+            </div>
+          <?php } else{
+          echo "
+            <a href='./login.php'>
+              <span><i class='bi bi-person-circle'></i></span>
+            </a>
+          ";
+          } ?>
       </div>
       <div class="activity-drawer wish-list">
         <span><i class="bi bi-suit-heart"></i></span>
@@ -142,11 +191,6 @@
                     <div class='product-price-sc'>
                       <h3>₾<?= $row_data['price'] ?>.00</h3>
                     </div>
-                    <ul class='product-sc-infoList d-flex-fdc'>
-                      <li> <strong>ბრენდი:</strong><span>ბრენდის სახელი</span> </li>
-                      <li> <strong>ტიპი:</strong><span>პროდუქტის ტიპი</span> </li>
-                      <li> <strong>მარაგი:</strong><span> </span> </li>
-                    </ul>
                     <div class='product-sc-description'>
                       <p><?= $description ?></p>
                     </div>
@@ -163,7 +207,7 @@
                     </div>
                     <div class='product-sc-options'>
                       <div class='sc-option-size sc-option-colors d-flex-aic'>
-                        <span class='inf-name'>Color:</span>
+                        <span class='inf-name'>ფერი:</span>
                         <ul class='d-flex'>
                           <?php
                             $select_colors = "Select * from  `colors` where _id = $color ";
@@ -176,8 +220,7 @@
                         </ul>
                       </div>
                       <div class='sc-option-size sc-option-size d-flex-aic'>
-                        <span class='inf-name'>Size:</span>
-                        <ul class='d-flex'>
+                        <span class='inf-name'>ზომა:</span>
                         <ul class='d-flex'>
                           <?php
                             $select_size = "Select * from  `size` where _id = $size ";
@@ -188,15 +231,14 @@
                                   <li class='color-option d-flex-aic-jcc'> <?= $size_name ?></li>
                               <?php } ?>
                         </ul>
-                        </ul>
                       </div>
                     </div>
                     <div class='product-sc-addto'>
                       <div class='product-toCart d-flex'>
                         <div class='quantity-inputgroups'>
-                          <input type='button' value='-'>
-                          <input value='0' type='button'>
-                          <input type='button' value='+'>
+                          <input class="cart-qty-minus" type='button' value='-'>
+                          <input class="qty" value='1' type='button'>
+                          <input class="cart-qty-plus" type='button' value='+'>
                         </div>
                         <?php
                           $cart_query = "Select * from `cart`";
@@ -205,26 +247,23 @@
                             $id = $row_data['product_id'];
                           }
                         if(isset($id) && $id == $product_id){
-                          echo "
-                            <a class='add-to-cart-btn d-flex-aic' href='checkout.php'>Go to checkout</a>
-                        ";
+                          echo " <a class='goto-cart-btn d-flex-aic' href='./cart.php'> კალათში გადასვლა <i class='bi bi-bag-check'></i></a>";
                         }else{
-                          echo " <a class='add-to-cart-btn d-flex-aic' href='?add_to_cart=$product_id'>Add to cart <i class='bi bi-bag-check'></i></a>";
+                          echo "<div class='add-to-cart-btn d-flex-aic' data-id='$product_id'> კალათში დამატება <i class='bi bi-bag-check'></i></div>";
                         }
                         ?>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <?php                 
+              <?php                 
             }
           }
       ?>
     </div>
   </div>
   <div class="product-page-tabs">
-  <div class=" container">
+  <div class="container">
     <div class="tabs">
     <ul id="tabs-nav">
       <li><a href="#tab1">მომხმარებლების მოსაზრებები</a></li>
@@ -322,8 +361,51 @@
 
   $(document).ready(function() {
 
-  // parse query stirng 
-  //send ajax request if infut field is not emty
+    var incrementPlus;
+    var incrementMinus;
+
+    var buttonPlus  = $(".cart-qty-plus");
+    var buttonMinus = $(".cart-qty-minus");
+
+    var incrementPlus = buttonPlus.click(function() {
+      var $n = $(this).parent(".quantity-inputgroups").find(".qty");
+      $n.val(Number($n.val())+1 );
+    });
+
+    var incrementMinus = buttonMinus.click(function() {
+      var $n = $(this).parent(".quantity-inputgroups").find(".qty");
+      var amount = Number($n.val());
+      if (amount > 1) {
+        $n.val(amount-1);
+      }
+    });
+
+    $('.add-to-cart-btn').click(function(){
+      var product = $(this).attr('data-id')
+      var quantity = $('.qty').val()
+      $.ajax({
+        type: 'POST',
+        url: 'functions/addToCart.php',
+        data: {'quantity': quantity,'add_to_cart': product},
+        beforeSend: function(){
+
+        },
+        success:  function(data){
+            $('.alert-popup').show()
+            $('.popup-message-body').text(data)
+
+             setTimeout(() => {
+              $('.alert-popup').hide()
+            }, 2000);
+             setTimeout(() => {
+              location.reload();
+            }, 3000);
+
+
+        }
+      })
+    })
+
   var parseqrst = URI(document.URL).query(true)
   $('.send-customization').click(() => {
     if($('.cs-textarea').val() == ''){
@@ -372,7 +454,7 @@
     slideSpeed : 1000,
     navigation: false,
     pagination:false,
-    afterAction : syncPosition,
+    responsive: true,
     responsiveRefreshRate : 200,
   });
 

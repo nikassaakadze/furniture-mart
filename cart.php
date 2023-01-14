@@ -1,6 +1,7 @@
 <?php
   include("includes/connect.php");
   include("functions/common.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,17 +9,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ავეჯის მაღაზია || სურვილების კალათი</title>
+  <!-- set favicon -->
+  <link rel="icon" type="image/png" href="./assets/ico/favicon.png">
+
   <!-- import local css file  -->
   <link rel="stylesheet" href="css/bundle.css">
+  
   <!-- import bootstrap icons   --CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/bpg-arial/css/bpg-arial.min.css">
-
 </head>
 <body>
-
-<?php addToCart(); ?>
 
 <!-- add to cart message start  -->
 <div class="alert-popup"> 
@@ -26,28 +27,47 @@
 </div>
 <!-- add to cart message end  -->
 
+<!-- hidden responsive serch  bar  -->
+<div class="search-responsive-nav">
+  <div class="search-responsive-nav-inner container"></div>
+</div>
+<!-- hidden responsive serch  bar  -->
+
 <!-- site top bar start  -->
 <div class="site-top-bar">
   <div class="d-flex-aic-jcsb top-bar-inner container">
     <div class="bar-inner-left">
       <span class="top-bar-item">
-        <a href="">კონტაქტი</a>
+        <a href="#">
+          <span>კონტაქტი</span>
+          <i class="bi bi-person-lines-fill"></i>
+        </a>
       </span>
       <span class="top-bar-item">
-        <a href="">ხშირად დასმული კითხვები</a>
+        <a href="#">
+          <span>ხშირად დასმული კითხვები</span>
+          <i class="bi bi-patch-question"></i>
+        </a>
       </span>
       <span class="top-bar-item">
-        <a href="">ბლოგი</a>
+        <a href="#">
+          <span>ბლოგი</span>
+          <i class="bi bi-flower3"></i>
+        </a>
       </span>
     </div>
     <div class="bar-inner-right d-flex">
       <span class="top-bar-item d-flex-aic">
-        <i class="bi bi-headphones"></i>
-        <a href="">+ 995 123 456</a>
+        <a href="#">
+          <i class="bi bi-headphones"></i>
+          <span>+ 995 123 456</span>
+        </a>
       </span>
       <span class="top-bar-item d-flex-aic">
-      <i class="bi bi-envelope"></i>
-        <a href="">Furniture@example.org</a>
+        <a href="#">
+          <i class="bi bi-envelope"></i>
+          <span>Furniture@example.org</span>
+        </a>
       </span>
     </div>
   </div>
@@ -55,7 +75,7 @@
 <!-- site top bar end  -->
 
 <!-- site main header start  -->
-<div class="main-header header-container">
+<div class="main-header">
   <header class="main-header-inner container d-flex-aic-jcsb">
     <div class="header-left-drawer">
       <div class="logo-drawer">
@@ -65,14 +85,25 @@
       </div>
     </div>
     <div class="header-middle-drawer d-flex-aic">
-    <nav class="status-bar-navigation nav-menu">
-      <ul class="status-bar-navigation-list d-flex">
-        <li class="bar-navigation-list-item"><a href="./index.php">მთავარი</a></li>
-        <li class="bar-navigation-list-item"><a href="./shop.php">შოპინგი</a></li>
-        <li class="bar-navigation-list-item"><a href="">დახმარება</a></li>
-        <li class="bar-navigation-list-item"><a href="">მისამართი</a></li>
-      </ul>
-    </nav>
+      <nav class="status-bar-navigation">
+        <ul class="status-bar-navigation-list d-flex">
+          <li class="bar-navigation-list-item">
+          <a href="./index.php">მთავარი</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="./shop.php">შოპინგი</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="">დახმარება</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="">მისამართი</a>
+          </li>
+        </ul>
+        <div class="menu-icon-hidden">
+          <i class="bi bi-list"></i>
+        </div>
+      </nav>
       <form class="main-search-form d-flex-aic" action="search.php" role="search">
         <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="text">
         <button class="search-button"  type="submit">
@@ -80,9 +111,27 @@
         </button>
       </form>
     </div>
-    <div class="header-right-drawer header-right-drawer-container d-flex">
-      <div class="activity-drawer register">
-        <span><i class="bi bi-person-circle"></i></span>
+    <div class="header-right-drawer d-flex">
+      <div class="activity-drawer register d-flex-aic">
+      <?php
+          if(isset($_SESSION['username'])){
+            ?>
+             <div class="user-logged-in d-flex-aic">
+              <div class="user-avatar">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
+              </div>
+              <small><?= $_SESSION['username']?></small>
+              <small class="log-out">
+                <a href="./functions/logout.php?"><i class="bi bi-box-arrow-in-left"></i></a>
+              </small>
+            </div>
+          <?php } else{
+          echo "
+            <a href='./login.php'>
+              <span><i class='bi bi-person-circle'></i></span>
+            </a>
+          ";
+          } ?>
       </div>
       <div class="activity-drawer wish-list">
         <span><i class="bi bi-suit-heart"></i></span>
@@ -108,7 +157,13 @@
         <?php
           $ip = getIPAddress();
           $total_cart_price = 0;
-          $cart_query = "Select * from `cart` where ip_address = '$ip'";
+          $cart_query = "SELECT * FROM `cart` where quantity != '' ";
+          if(isset($_SESSION['user'])){
+            $cart_query .="AND user IN('".$_SESSION['user']."')";
+          }
+          else{
+            $cart_query .="AND ip_address IN('".$ip."')";
+          }
           $result = mysqli_query($conn, $cart_query);
           $result_count = mysqli_num_rows($result);
           if( $result_count > 0){
@@ -129,22 +184,18 @@
             <h1><?=$row_product_price['name']  ?></h1>
             <h3>ფასი: $<?=$row_product_price['price'] ?></h3>
           </div>
-          <form id="update_form" class="d-flex-aic" action="functions/updateCart.php" method="post">
-
-            <div class="cart-produt-quantity d-flex-aic">
-              <input type="hidden" name = 'productID' value = '<?= $product_id ?>' >
-              <input class="quantity-value" type="text" name="qty" value='<?= $row['quantity'] ?>'  >
-              <button class="update-cart-quantity" name="update_cart" type="submit" >განახლება</button>
-            </div>
-
-            <div class="remove-widget">
-              <input type="hidden" name = 'productID' value = '<?= $product_id ?>' >
-              <button class="remove-item-from-cart" type="submit" name="remove_item_from_cart">
-                <i class="bi bi-trash"></i>
-              </button>
-            </div>
-            
-            </form>
+          <div class="cart-produt-quantity">
+          <div class="button-container d-flex-aic">  
+            <button name='<?= $product_id ?>' class="cart-qty-minus cart-qty-btn" type="button" value="-">-</button>
+            <input type="button" name="qty" class="qty" maxlength="12" value='<?= $row['quantity'] ?>' class="input-text qty" />
+            <button name='<?= $product_id ?>' class="cart-qty-plus cart-qty-btn" type="button" value="+">+</button>
+          </div>
+          </div>
+          <div class="remove-widget">
+            <button class="remove-item-from-cart" name='<?= $product_id ?>'>
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
         </div>
         <?php                 
         }
@@ -157,7 +208,7 @@
         <ul class="subtotal-box d-flex-fdc">
           <li>
             <strong>მთლიანი ღირებულება</strong>
-            <span>$<?php echo $total_cart_price ?></span>
+            <span class="total-amount-value">$<?php echo $total_cart_price ?></span>
           </li>
           <li>
             <strong>მიწოდება</strong>
@@ -187,10 +238,10 @@
         else{
           echo "
             <div class='empty-cart-info'>
-              <h1>Your cart is empty</h1>
+              <h1>კალათა ცარიელია</h1>
               <div class='redirect-ways'>
-                <a class='shop-page-redirect redirect-from-cart' href='index.php'>Go to shopping</a>
-                <a class='login-page-redirect redirect-from-cart' href='index.php'>Sign in to your account</a>
+                <a class='shop-page-redirect redirect-from-cart' href='index.php'>შოპინგის გაგრძელება</a>
+                <a class='login-page-redirect redirect-from-cart' href='login.php'>გაიარეთ ავტორიზაცია</a>
               </div>
             </div>
           ";
@@ -270,20 +321,59 @@
   <script src="./javascript/main.js"></script>
   <script src="./javascript/owl.js"></script>
   <script>
-    $('#select-all').click(function(event) {   
-    if(this.checked) {
-        // Iterate each checkbox
-        $(':checkbox').each(function() {
-            this.checked = true;      
-            $(".clear_cart_btn").removeAttr('disabled');
-        });
-    } else {
-        $(':checkbox').each(function() {
-            this.checked = false;    
-            $(".clear_cart_btn").attr('disabled','disabled');              
-        });
-    }
-}); 
+
+    var incrementPlus;
+    var incrementMinus;
+
+    var buttonPlus  = $(".cart-qty-plus");
+    var buttonMinus = $(".cart-qty-minus");
+
+    var incrementPlus = buttonPlus.click(function() {
+      var $n = $(this).parent(".button-container").find(".qty");
+      $n.val(Number($n.val())+1 );
+    });
+
+    var incrementMinus = buttonMinus.click(function() {
+      var $n = $(this).parent(".button-container").find(".qty");
+      var amount = Number($n.val());
+      if (amount > 1) {
+        $n.val(amount-1);
+      }
+    });
+
+    $('.cart-qty-btn').click(function(){
+      var productId = $(this).attr("name")
+      var $n = $(this).parent(".button-container").find(".qty");
+      $.ajax({
+        type: "POST",
+        url: 'functions/updateCart.php',
+        data: {
+          'product': productId, 
+          'qunatity': $n.val()
+        },
+        beforeSend: function(){
+          $('.total-amount-value').html(
+            `
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif?20170503175831" class="amount-preloader" />
+            `
+          )
+        },
+        success: function(){
+          $('.total-amount-value').load(document.URL +  ' .total-amount-value');
+      }
+      })
+    })
+    $('.remove-item-from-cart').click(function(){
+      var productId = $(this).attr('name')
+     $.ajax({
+      type: 'POST',
+      url: 'functions/updateCart.php',
+      data: {'removeItem': productId},
+      success: function(){
+        location.reload();
+      }
+     })
+    })
   </script>
 </body>
 </html>

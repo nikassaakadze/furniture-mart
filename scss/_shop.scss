@@ -1,12 +1,20 @@
 .shop-page-wrapper{
-  .shop-page-header, .shop-page-content{
+  .shop-page-header{
+    display: flex;
+    align-items: center;
+    padding: 20px ;
+    gap: 1rem;
+    margin-bottom: 10px;
+    border: 1px solid #E5E7E9;
+  }
+   .shop-page-content{
     display: grid;
     grid-template-columns: 22.5% auto;
     gap: 2rem;
   }
   .shop-page-cards{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
     .product-card{
       max-width: 100% !important;
@@ -17,6 +25,16 @@
   }
 }
 
+.color-option-circle{
+  border: 1px solid #fff;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.active-category{
+  color: rgb(255, 102, 0);
+}
+
 .grid-cards-by-3{
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
 }
@@ -25,11 +43,9 @@
 }
 
 .shop-page-options{
-  padding-bottom: 50px;
-  justify-self: end;
   .grid-options{
     gap: 1rem;
-    border: 1px solid rgb(190, 190, 190);
+    border: 1px solid #bebebe;
     width: fit-content;
     padding: 10px 15px 3.5px 15px;
     justify-self: end;
@@ -42,6 +58,49 @@
     }
   }
 }
+.category-widget_category-listItem{
+  font-size: 13px;
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+
+.sticky-category, .sticky-price, .sticky-color{
+  display: none;
+  .sticky-body{
+    background: rgb(220, 220, 220);
+    .sticky-name{
+      padding: 0 10px;
+      color: #000;
+    }
+    .remove-sticky-category, .remove-sticky-price, .remove-sticky-color{
+      padding: 13px 15px 8px 15px;
+      background: #111;
+      cursor: pointer;
+      i{
+        color: white;
+      }
+    }
+  }
+  .price-sticky__priceMinVal, .price-sticky__priceMaxVal{
+    color: white;
+    font-family: mrglovani;
+  }
+}
+
+
+.shop-custom-filters{
+  gap: 1rem;
+}
+.price-sticky__priceMaxVal{
+  padding: 0 5px 0 0 !important;
+  &::before{
+    content: (" - ");
+  }
+}
+.price-sticky__priceMinVal{
+  padding: 0 2px 0 5px !important;
+}
 
 .shop-page-content{
   .shop-page-filters{
@@ -49,7 +108,7 @@
       margin-top: 20px;
     }
     .shop-page-widget{
-      background: #F4F6F6;
+      border: 1px solid #E5E7E9;
       padding: 25px;
       .widget-headline{
         border-bottom: 1px solid rgb(212, 212, 212);
@@ -138,8 +197,14 @@ input[type="number"]::-webkit-outer-spin-button {
     }
   }
 }
+.filter-preloader-wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .price-val-field{
-  width: fit-content;
   border: none;
   min-width: 10px;
   font-size: 15px;
@@ -154,10 +219,78 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 .color-circle{
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
-  background: rgb(202, 198, 238);
   border: 1px solid #999;
-  padding: 2px;
+  padding: 5px;
+}
+
+.details-widget{
+  background: rgb(14, 25, 37);
+  margin-top: 50px;
+  .details-widget-inner{
+    padding: 30px 0;
+    position: relative;
+    .detail-object-hero{
+      .teail-object-item{
+        width: 100%;
+      }
+    }
+      .details-stick-lamp{
+        right: 7%;
+        top: 15%;
+      }
+      .details-stick-decor{
+        left: 22%;
+        top: 30%;
+      }
+      .details-stick-sofa{
+        left: 55%;
+        top: 70%;
+      }
+
+      .detail-stick{
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        background: #ccf75f;
+        border-radius: 50%;
+        cursor: pointer;
+        span{
+          color: rgb(0, 0, 0);
+        }
+        .details-stick-info{
+          display: none;
+          width: 300px;
+          height: 80px;
+          background: #111;
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          img{
+            height: 80px;
+            width: 100px;
+            object-fit: cover;
+          }
+          .details-stick-info-body{
+            padding: 10px;
+            h6{
+              color: white;
+              font-size: 15px;
+            }
+            p{
+              color: white;
+              font-size: 10px;
+              margin-top: 5px;
+            }
+          }
+        }
+          &:hover{
+            .details-stick-info{
+              display: flex !important;
+            }
+          }
+      }
+  }
 }

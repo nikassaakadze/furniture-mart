@@ -1,13 +1,14 @@
 .cart-area{
   margin: 30px 0;
+  .amount-preloader{
+    height: 20px;
+    width: 20px;
+  }
 .cart-area-inner{
   display: grid;
   grid-template-columns: 65% 33%;
   gap: 2rem;
   .cart-cards-feed{
-    & :last-child{
-      // border-bottom: 0  !important;
-    }
     .cart-prduct{
       padding: 30px 40px;
       border-bottom: 1px solid rgb(204, 204, 204);
@@ -38,15 +39,24 @@
       }
       .cart-produt-quantity{
         margin-left: 50px;
-         .quantity-value{
+        .button-container{
+          border: 1px solid rgb(217, 217, 217);
+          background: white;
+        }
+         .qty{
           width: 30px;
           height: 30px;
           border: none;
-          border: 1px solid #D7DBDD;
+          background: transparent;
         }
-        .quantity-value{
-          margin: 0 5px;
-          padding-left: 7px;
+        .cart-qty-plus, .cart-qty-minus{
+          width: 30px;
+          height: 30px;
+          border: none;
+          cursor: pointer;
+          color: rgb(6, 6, 6);
+          font-size: 20px;
+          background: transparent;
         }
       }
       .remove-item-from-cart{

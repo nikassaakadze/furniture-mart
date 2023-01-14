@@ -8,17 +8,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ავეჯის მაღაზია || შოპინგი</title>
+  <!-- set favicon -->
+  <link rel="icon" type="image/png" href="./assets/ico/favicon.png">
+
   <!-- import local css file  -->
   <link rel="stylesheet" href="css/bundle.css">
+  
   <!-- import bootstrap icons   --CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/bpg-arial/css/bpg-arial.min.css">
-
 </head>
 <body>
-
-<?php addToCart(); ?>
 
 <!-- add to cart message start  -->
 <div class="alert-popup"> 
@@ -26,28 +26,47 @@
 </div>
 <!-- add to cart message end  -->
 
+<!-- hidden responsive serch  bar  -->
+<div class="search-responsive-nav">
+  <div class="search-responsive-nav-inner container"></div>
+</div>
+<!-- hidden responsive serch  bar  -->
+
 <!-- site top bar start  -->
 <div class="site-top-bar">
   <div class="d-flex-aic-jcsb top-bar-inner container">
     <div class="bar-inner-left">
       <span class="top-bar-item">
-        <a href="">კონტაქტი</a>
+        <a href="#">
+          <span>კონტაქტი</span>
+          <i class="bi bi-person-lines-fill"></i>
+        </a>
       </span>
       <span class="top-bar-item">
-        <a href="">ხშირად დასმული კითხვები</a>
+        <a href="#">
+          <span>ხშირად დასმული კითხვები</span>
+          <i class="bi bi-patch-question"></i>
+        </a>
       </span>
       <span class="top-bar-item">
-        <a href="">ბლოგი</a>
+        <a href="#">
+          <span>ბლოგი</span>
+          <i class="bi bi-flower3"></i>
+        </a>
       </span>
     </div>
     <div class="bar-inner-right d-flex">
       <span class="top-bar-item d-flex-aic">
-        <i class="bi bi-headphones"></i>
-        <a href="">+ 995 123 456</a>
+        <a href="#">
+          <i class="bi bi-headphones"></i>
+          <span>+ 995 123 456</span>
+        </a>
       </span>
       <span class="top-bar-item d-flex-aic">
-      <i class="bi bi-envelope"></i>
-        <a href="">Furniture@example.org</a>
+        <a href="#">
+          <i class="bi bi-envelope"></i>
+          <span>Furniture@example.org</span>
+        </a>
       </span>
     </div>
   </div>
@@ -55,7 +74,7 @@
 <!-- site top bar end  -->
 
 <!-- site main header start  -->
-<div class="main-header header-container">
+<div class="main-header">
   <header class="main-header-inner container d-flex-aic-jcsb">
     <div class="header-left-drawer">
       <div class="logo-drawer">
@@ -65,14 +84,25 @@
       </div>
     </div>
     <div class="header-middle-drawer d-flex-aic">
-    <nav class="status-bar-navigation nav-menu">
-      <ul class="status-bar-navigation-list d-flex">
-        <li class="bar-navigation-list-item"><a href="./index.php">მთავარი</a></li>
-        <li class="bar-navigation-list-item"><a href="./shop.php">შოპინგი</a></li>
-        <li class="bar-navigation-list-item"><a href="">დახმარება</a></li>
-        <li class="bar-navigation-list-item"><a href="">მისამართი</a></li>
-      </ul>
-    </nav>
+      <nav class="status-bar-navigation">
+        <ul class="status-bar-navigation-list d-flex">
+          <li class="bar-navigation-list-item">
+            <a href="./index.php">მთავარი</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="./shop.php">შოპინგი</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="">დახმარება</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="">მისამართი</a>
+          </li>
+        </ul>
+        <div class="menu-icon-hidden">
+          <i class="bi bi-list"></i>
+        </div>
+      </nav>
       <form class="main-search-form d-flex-aic" action="search.php" role="search">
         <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="text">
         <button class="search-button"  type="submit">
@@ -80,9 +110,27 @@
         </button>
       </form>
     </div>
-    <div class="header-right-drawer header-right-drawer-container d-flex">
-      <div class="activity-drawer register">
-        <span><i class="bi bi-person-circle"></i></span>
+    <div class="header-right-drawer d-flex">
+      <div class="activity-drawer register d-flex-aic">
+      <?php
+          if(isset($_SESSION['username'])){
+            ?>
+             <div class="user-logged-in d-flex-aic">
+              <div class="user-avatar">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
+              </div>
+              <small><?= $_SESSION['username']?></small>
+              <small class="log-out">
+                <a href="./functions/logout.php?"><i class="bi bi-box-arrow-in-left"></i></a>
+              </small>
+            </div>
+          <?php } else{
+          echo "
+            <a href='./login.php'>
+              <span><i class='bi bi-person-circle'></i></span>
+            </a>
+          ";
+          } ?>
       </div>
       <div class="activity-drawer wish-list">
         <span><i class="bi bi-suit-heart"></i></span>
@@ -113,11 +161,8 @@
     </div>
     <div class="shop-page-wrapper">
       <div class="shop-page-header">
-        <div class="shop-page-filters-header"></div>
-        <div class="shop-page-options">
+      <div class="shop-page-options">
           <div class="grid-options d-flex-aic">
-
-
             <div class="grid-option-select grid-by-2  active">
               <img src="./assets/svg/grid-2.svg" alt="">
             </div>
@@ -129,6 +174,35 @@
             </div>
           </div>
         </div>
+            
+        <div class="sticky-category" data-id="">
+          <div class="d-flex-aic sticky-body">
+            <small class="sticky-name sticky-category-name"></small>
+            <small class="remove-sticky-category d-flex-aic-jcc">
+              <i class="bi bi-x-lg"></i>
+            </small>
+          </div>
+        </div>
+
+        <div class="sticky-price">
+          <div class="d-flex-aic sticky-body">
+            <small class="price-sticky__priceMinVal"></small>
+            <small class="price-sticky__priceMaxVal"></small>
+            <small class="remove-sticky-price d-flex-aic-jcc">
+              <i class="bi bi-x-lg"></i>
+            </small>
+          </div>
+        </div>
+
+        <div class="sticky-color" data-id="">
+          <div class="d-flex-aic sticky-body">
+            <small class="sticky-name sticky-color-name"></small>
+            <small class="remove-sticky-color d-flex-aic-jcc">
+              <i class="bi bi-x-lg"></i>
+            </small>
+          </div>
+        </div>
+           
       </div>
       <div class="shop-page-content">
         <div class="shop-page-filters">
@@ -144,7 +218,7 @@
                   while($row_data = mysqli_fetch_assoc($result)){
                     $category_name = $row_data['category_name'];
                     $category_id = $row_data['_id'];
-                    echo " <li class='category-widget_category-listItem'><a href='./category.php?category=$category_id'>$category_name</a></li>";
+                    echo " <li data-id='$category_id' data-name='$category_name' class='category-widget_category-listItem'>$category_name</li>";
                   }
                 ?>
               </ul>
@@ -158,10 +232,10 @@
               <div class="range-slider">
                 <div class="progress"></div>
                 <span class="range-min-wrapper">
-                  <input class="range-min" type="range" min="1" max="100" value="1">
+                  <input id="range-min" class="range-min price-filter-slider reset-min" type="range" min="1" max="300" value="1">
                 </span>
                 <span class="range-max-wrapper">
-                  <input class="range-max" type="range" min="1" max="100" value="100">
+                  <input id="range-max" class="range-max price-filter-slider reset-max" type="range" min="1" max="400" value="400">
                 </span>
               </div>
               <div class="prive-filter-range-val d-flex-aic">
@@ -169,11 +243,11 @@
                 <div class="price-ranges d-flex-aic">
                   <div class="min-value numberVal">
                     <span>$</span>
-                    <input type="button" class="price-val-field" min="0" max="100" value="1" disabled>
+                    <input type="button" class="price-val-field reset-min" min="0" max="400" value="1" disabled>
                   </div>
                   <div class="max-value numberVal">
                     <span>$</span>
-                    <input type="button" class="border text-center price-val-field" min="1" max="100" value="100" disabled>
+                    <input type="button" class="border text-center reset-max price-val-field" min="1" max="400" value="400" disabled>
                   </div>
                 </div>
               </div>
@@ -190,8 +264,9 @@
                     $result = mysqli_query($conn, $select_categories);
                     while($row_data = mysqli_fetch_assoc($result)){
                       $color = $row_data['color'];
+                      $color_id = $row_data['_id'];
                       echo "
-                        <li class='d-flex-aic'>
+                        <li class='d-flex-aic color-option-circle' data-name='$color' data-id='$color_id'>
                         <div class='color-circle' style='background: $color '></div>
                         <span>$color</span>
                       </li>
@@ -209,52 +284,45 @@
             while($row_data = mysqli_fetch_assoc($result)){
               $avaliable = $row_data['avaliable'];
               ?>
-              <div class='product-card'>
-                <a href='./product.php?product=<?= $row_data['_id'] ?>&color=<?= $row_data['color'] ?>' class='btn list-group-item-primary'>
-                  <div class='product-card-info'>
-                    <h4 class='product-card-name'><?= $row_data['name'] ?></h4>
-                    <h6 class='product-card-price'>$<?= $row_data['price'] ?>.00</h6>
-                  </div>
-                  <div class='flip-card'>
-                    <div class='flip-card-inner'>
-                      <div class='flip-card-front'>
-                        <img data-src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
-                      </div>
-                      <div class='flip-card-back'>
-                        <img data-src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
-                      </div>
+            <div class='product-card'>
+              <a href='./product.php?product=<?= $row_data['_id'] ?>&color=<?= $row_data['color'] ?>' class='btn list-group-item-primary'>
+                <div class='flip-card'>
+                  <div class='flip-card-inner'>
+                    <div class='flip-card-front'>
+                      <img data-src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
+                    </div>
+                    <div class='flip-card-back'>
+                      <img data-src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
                     </div>
                   </div>
-                </a>
-                <div class="product-card-footer">
-                  <div class='product-card-rate'>
-                    <i class='bi bi-star'></i>
-                    <i class='bi bi-star'></i>
-                    <i class='bi bi-star'></i>
-                  </div>
+                </div>
+              </a>
+              <div class='product-card-info'>
+                <h4 class='product-card-name'><?= $row_data['name'] ?></h4>
+              </div>
+              <div class="product-card-drawer d-flex-aic-jcsb">
+              <h6 class='product-card-price'><span class="valuta-icon">₾</span> - <?= $row_data['price'] ?>.00</h6>
                 <?php
                   if($row_data['avaliable'] > 0){
                     echo "
                       <div class='product-card-avaliability'>
-                        <span>Avaliable: $avaliable</span>
+                        <span>მარაგშია: $avaliable</span>
                       </div>
                     ";
                   }
                   else{
                     echo "
                       <div class='product-card-avaliability not-avalibale'>
-                        <span>Out of stock</span>
+                        <span>მარაგი ამოიწურა</span>
                       </div>
                     ";
                   };
                 ?>
-                </div>
-                <div class="product-card-tocart">
-                  <a class="d-flex-aic-jcc add-to-cart-button" href='./index.php?add_to_cart=<?= $row_data['_id'] ?>'>
-                    <i class="bi bi-bag"></i>
-                  </a>
-                </div>
-            </div>
+              </div>
+              <div class="product-card-tocart add-to-cart-btn d-flex-aic-jcc" data-id="<?= $row_data['_id'] ?>">
+                <i class="bi bi-bag"></i>
+              </div>
+          </div>
         <?php } ?>
       </div>
       </div>
@@ -262,6 +330,56 @@
   </div>
 </section>
 <!-- products feed end -->
+
+<section class="details-widget">
+  <div class="details-widget-inner container">
+    <div class="detail-object-hero">
+      <img class="teail-object-item" src="https://demo2wpopal.b-cdn.net/umimo/wp-content/uploads/2021/06/h1_img-2.png" alt="">
+      <div class="detail-stick details-stick-lamp d-flex-aic-jcc">
+        <span>+</span>
+        <div class="details-stick-info d-flex">
+          <div class="details-stick-info-hero">
+            <img src="https://demo2wpopal.b-cdn.net/umimo/wp-content/uploads/2021/06/h1_img-4.jpg" alt="">
+          </div>
+          <div class="details-stick-info-body">
+            <h6>ლამპა</h6>
+            <p>
+              დაბალი ნათების დასადგამი ლამპა
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="detail-stick details-stick-decor d-flex-aic-jcc">
+        <span>+</span>
+        <div class="details-stick-info d-flex">
+          <div class="details-stick-info-hero">
+            <img src="https://secure.img1-fg.wfcdn.com/im/51298398/compr-r85/5081/50815995/magallanes-monstera-artificial-indooroutdoor-decor-floor-foliage-tree.jpg" alt="">
+          </div>
+          <div class="details-stick-info-body">
+            <h6>დეკორაცია</h6>
+            <p>
+              დეკორაცია, მინი ხე
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="detail-stick details-stick-sofa d-flex-aic-jcc">
+        <span>+</span>
+        <div class="details-stick-info d-flex">
+          <div class="details-stick-info-hero">
+            <img src="https://secure.img1-fg.wfcdn.com/im/51298398/compr-r85/5081/50815995/magallanes-monstera-artificial-indooroutdoor-decor-floor-foliage-tree.jpg" alt="">
+          </div>
+          <div class="details-stick-info-body">
+            <h6>ავეჯი</h6>
+            <p>
+              ავეჯი, რბილი დივანი 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- footer start  -->
 <footer class="site-footer">
@@ -331,72 +449,31 @@
   <!-- local imports  -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="./javascript/main.js"></script>
-  <script src="./javascript/owl.js"></script>
-      <script>
-        $(document).ready(function() {
+  <script src="./javascript/Ajax.js"></script>
+    <script>
 
-          $(".ecommerce-slider").owlCarousel({
-            navigation : false, 
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem:true
-          });
+        $('.add-to-cart-btn').click(function(){
+          var product = $(this).attr('data-id')
+          $.ajax({
+            type: 'POST',
+            url: 'functions/addToCart.php',
+            data: {'quantity': 1,'add_to_cart': product},
+            beforeSend: function(){
 
-          $(".ecommerce-slider").trigger('owl.play',2000)
+            },
+            success:  function(data){
+                $('.alert-popup').show()
+                $('.popup-message-body').text(data)
 
-          $(".category-slider-road").owlCarousel({
-            items : 5,
-            lazyLoad : true,
-            navigation : true,
-          });
-    
-          $(".partners-slider").owlCarousel({
-            items : 5,
-            lazyLoad : true,
-            navigation : false,
-          });
-          $(".partners-slider").trigger('owl.play',2000)
+                setTimeout(() => {
+                  $('.alert-popup').hide()
+                }, 2000);
+
+
+            }
+          })
         })
 
-        $(".category-menu-button").click(() => {
-          $('.category-dropdown-menu').slideToggle()
-        })
-        
-        $(".add-to-cart-button").on("click", () => {
-          localStorage.setItem("reloading", "true");
-        } )
-
-        if(localStorage.getItem("reloading")){
-          $('.alert-popup').show()
-          localStorage.removeItem("reloading")
-          setTimeout(() => {
-            $('.alert-popup').hide()
-          }, 1000);
-        }
-    </script>
-    <script>
-    $(document).ready(function(){
-      $('grid-options grid-option-select').click(function(){
-        $('grid-option-select').removeClass("active");
-        $(this).addClass("active");
-    });
-    });
-
-      // $('.grid-by-2').click(() => {
-      //   $('.shop-page-cards').removeClass('grid-cards-by-3')
-      //   $('.shop-page-cards').removeClass('grid-cards-by-4')
-      //   $('.shop-page-cards').removeClass('grid-cards-by-4')
-      // })
-      // $('.grid-by-3').click(() => {
-      //   $('.shop-page-cards').removeClass('grid-cards-by-4')
-      //   $('.shop-page-cards').addClass('grid-cards-by-3')
-      // })
-      // $('.grid-by-4').click(() => {
-      //   $('.shop-page-cards').removeClass('grid-cards-by-3')
-      //   $('.shop-page-cards').addClass('grid-cards-by-4')
-      // })
-    </script>
-    <script>
       const range = document.querySelectorAll(".range-slider span input");
         progress = document.querySelector(".range-slider .progress");
         let gap = 0.1;

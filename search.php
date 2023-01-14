@@ -8,17 +8,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ავეჯის მაღაზია || ძებნა</title>
+  <!-- set favicon -->
+  <link rel="icon" type="image/png" href="./assets/ico/favicon.png">
+
   <!-- import local css file  -->
   <link rel="stylesheet" href="css/bundle.css">
+  
   <!-- import bootstrap icons   --CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/bpg-arial/css/bpg-arial.min.css">
-
 </head>
 <body>
-
-<?php addToCart(); ?>
 
 <!-- add to cart message start  -->
 <div class="alert-popup"> 
@@ -26,28 +26,47 @@
 </div>
 <!-- add to cart message end  -->
 
+<!-- hidden responsive serch  bar  -->
+<div class="search-responsive-nav">
+  <div class="search-responsive-nav-inner container"></div>
+</div>
+<!-- hidden responsive serch  bar  -->
+
 <!-- site top bar start  -->
 <div class="site-top-bar">
   <div class="d-flex-aic-jcsb top-bar-inner container">
     <div class="bar-inner-left">
       <span class="top-bar-item">
-        <a href="">კონტაქტი</a>
+        <a href="#">
+          <span>კონტაქტი</span>
+          <i class="bi bi-person-lines-fill"></i>
+        </a>
       </span>
       <span class="top-bar-item">
-        <a href="">ხშირად დასმული კითხვები</a>
+        <a href="#">
+          <span>ხშირად დასმული კითხვები</span>
+          <i class="bi bi-patch-question"></i>
+        </a>
       </span>
       <span class="top-bar-item">
-        <a href="">ბლოგი</a>
+        <a href="#">
+          <span>ბლოგი</span>
+          <i class="bi bi-flower3"></i>
+        </a>
       </span>
     </div>
     <div class="bar-inner-right d-flex">
       <span class="top-bar-item d-flex-aic">
-        <i class="bi bi-headphones"></i>
-        <a href="">+ 995 123 456</a>
+        <a href="#">
+          <i class="bi bi-headphones"></i>
+          <span>+ 995 123 456</span>
+        </a>
       </span>
       <span class="top-bar-item d-flex-aic">
-      <i class="bi bi-envelope"></i>
-        <a href="">Furniture@example.org</a>
+        <a href="#">
+          <i class="bi bi-envelope"></i>
+          <span>Furniture@example.org</span>
+        </a>
       </span>
     </div>
   </div>
@@ -55,7 +74,7 @@
 <!-- site top bar end  -->
 
 <!-- site main header start  -->
-<div class="main-header header-container">
+<div class="main-header">
   <header class="main-header-inner container d-flex-aic-jcsb">
     <div class="header-left-drawer">
       <div class="logo-drawer">
@@ -65,14 +84,25 @@
       </div>
     </div>
     <div class="header-middle-drawer d-flex-aic">
-    <nav class="status-bar-navigation nav-menu">
-      <ul class="status-bar-navigation-list d-flex">
-        <li class="bar-navigation-list-item"><a href="./index.php">მთავარი</a></li>
-        <li class="bar-navigation-list-item"><a href="./shop.php">შოპინგი</a></li>
-        <li class="bar-navigation-list-item"><a href="">დახმარება</a></li>
-        <li class="bar-navigation-list-item"><a href="">მისამართი</a></li>
-      </ul>
-    </nav>
+      <nav class="status-bar-navigation">
+        <ul class="status-bar-navigation-list d-flex">
+          <li class="bar-navigation-list-item">
+            <a href="./index.php">მთავარი</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="./shop.php">შოპინგი</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="">დახმარება</a>
+          </li>
+          <li class="bar-navigation-list-item">
+            <a href="">მისამართი</a>
+          </li>
+        </ul>
+        <div class="menu-icon-hidden">
+          <i class="bi bi-list"></i>
+        </div>
+      </nav>
       <form class="main-search-form d-flex-aic" action="search.php" role="search">
         <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="text">
         <button class="search-button"  type="submit">
@@ -80,9 +110,27 @@
         </button>
       </form>
     </div>
-    <div class="header-right-drawer header-right-drawer-container d-flex">
-      <div class="activity-drawer register">
-        <span><i class="bi bi-person-circle"></i></span>
+    <div class="header-right-drawer d-flex">
+      <div class="activity-drawer register d-flex-aic">
+      <?php
+          if(isset($_SESSION['username'])){
+            ?>
+             <div class="user-logged-in d-flex-aic">
+              <div class="user-avatar">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
+              </div>
+              <small><?= $_SESSION['username']?></small>
+              <small class="log-out">
+                <a href="./functions/logout.php?"><i class="bi bi-box-arrow-in-left"></i></a>
+              </small>
+            </div>
+          <?php } else{
+          echo "
+            <a href='./login.php'>
+              <span><i class='bi bi-person-circle'></i></span>
+            </a>
+          ";
+          } ?>
       </div>
       <div class="activity-drawer wish-list">
         <span><i class="bi bi-suit-heart"></i></span>
@@ -100,25 +148,22 @@
 </div>
 <!-- site main header end  -->
 
+<div class="feed-section-headline">
+  <h1 class="section-hd-typography">ძებნა</h1>
+  <div class="breadcrumb">
+  <span><a style="color: #bd8448;" href="index.php">მთავარი</a></span>
+    <small><i class="bi bi-chevron-right"></i></small>
+    <span>ძებნა</span>
+  </div>
+</div>
+
   <section class="search-result-page">
     <div class="search-result-page-inner container">
     <?php
-      if(isset($_GET['search']) &&  ! $_REQUEST['search'] == '' ){
+      if(isset($_GET['search']) && ! $_REQUEST['search'] == '' ){
         $search_keyword = $_GET['search'];
-        $min_price = 1;
-        $max_price = 500;
-        if(isset( $_GET['min_price'])){
-          $min_price_value = (int) $_GET['min_price'];
-        }else{
-          $min_price_value = $min_price;
-        };
-        if(isset($_GET['max_price'])){
-          $max_price_value = (int) $_GET['max_price'];
-        }else{
-          $max_price_value = $max_price;
-        };
         $search_query = "
-          Select * from  `products` where name  like '%$search_keyword%' && price > $min_price_value && price < $max_price_value ";
+          Select * from  `products` where name  like '%$search_keyword%' ";
           $result = mysqli_query($conn, $search_query);
           $numOfRows = mysqli_num_rows($result);
         ?>
@@ -126,21 +171,20 @@
           <h1>მოიძებნა <?=$numOfRows?> შედეგი (<mark><?= $_GET['search'] ?></mark>) </h1>
           <div class="price-filter d-flex-aic">
             <span>ფასის ფილტრი:</span>
-            <form method="get" action='/ecommerce/search.php?search' class="price-filter-inputs d-flex-aic">
-              <input type="hidden" placeholder="" name="search" value='<?= $_GET['search'] ?>' >
+            <div class="price-filter-inputs d-flex-aic">
               <div class="input-field">
-                <span>მინიმუმ:</span>
-                <input type="text" placeholder=" <?= $min_price_value ?>" name="min_price" >
+                <span>₾:</span>
+                <input type="number" placeholder="1" class="min-price" >
               </div>
               <div class="input-field">
-                <span>მაქსიმუმ:</span>
-              <input type="text" placeholder="<?= $max_price_value ?>" name="max_price" >
+                <span>₾:</span>
+              <input type="number" placeholder="1000" class="max-price" >
               </div>
-              <button class="price-filter-btn" type="submit" name=''>გაფილტრვა</button>
-            </form>
+              <button class="price-filter-btn" name='<?= $_GET['search'] ?>'>გაფილტრვა</button>
+            </div>
           </div>
       </div>
-      <div class="product-cards-area">
+      <div class="product-cards-area search-result-cards">
         <?php
           if($numOfRows == 0){
             echo "
@@ -151,59 +195,45 @@
             $_id = $row_data['_id'];
             $avaliable = $row_data['_id'];
           ?>
-              <div class='product-card'>
-              <a href='./product.php?product=<?= $row_data['_id'] ?>&color=<?= $row_data['color'] ?>' class='btn list-group-item-primary'>
-
-                <div class='product-card-info'>
-                  <h4 class='product-card-name'><?= $row_data['name'] ?></h4>
-                  <h6 class='product-card-price'>$<?= $row_data['price'] ?>.00</h6>
+        <div class='product-card'>
+          <a href='./product.php?product=<?= $row_data['_id'] ?>&color=<?= $row_data['color'] ?>' class='btn list-group-item-primary'>
+            <div class='flip-card'>
+              <div class='flip-card-inner'>
+                <div class='flip-card-front'>
+                  <img src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
                 </div>
-
-                <div class='flip-card'>
-
-                  <div class='flip-card-inner'>
-                    <div class='flip-card-front'>
-                      <img data-src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
-                    </div>
-
-                    <div class='flip-card-back'>
-                      <img data-src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
-                    </div>
+                <div class='flip-card-back'>
+                  <img src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
+                </div>
+              </div>
+            </div>
+          </a>
+          <div class='product-card-info'>
+            <h4 class='product-card-name'><?= $row_data['name'] ?></h4>
+          </div>
+          <div class="product-card-drawer d-flex-aic-jcsb">
+          <h6 class='product-card-price'><span class="valuta-icon">₾</span> - <?= $row_data['price'] ?>.00</h6>
+            <?php
+            if ($row_data['avaliable'] > 0) {
+              echo "
+                  <div class='product-card-avaliability'>
+                    <span>მარაგშია: $avaliable</span>
                   </div>
-
-                </div>
-              </a>
-
-              <div class="product-card-footer">
-
-                <div class='product-card-rate'>
-                  <i class='bi bi-star'></i>
-                  <i class='bi bi-star'></i>
-                  <i class='bi bi-star'></i>
-                </div>
-              <?php
-                if($row_data['avaliable'] > 0){
-                  echo "
-                    <div class='product-card-avaliability'>
-                      <span>Avaliable: $avaliable</span>
-                    </div>
-                  ";
-                }
-                else{
-                  echo "
-                    <div class='product-card-avaliability not-avalibale'>
-                      <span>Out of stock</span>
-                    </div>
-                  ";
-                };
-              ?>
-              </div>
-              <div class="product-card-tocart">
-                <a class="d-flex-aic-jcc add-to-cart-button" href='./index.php?add_to_cart=<?= $row_data['_id'] ?>'>
-                  <i class="bi bi-bag"></i>
-                </a>
-              </div>
-              </div>
+                ";
+            } else {
+              echo "
+                  <div class='product-card-avaliability not-avalibale'>
+                    <span>მარაგი ამოიწურა</span>
+                  </div>
+                ";
+            }
+            ;
+            ?>
+          </div>
+          <div class="product-card-tocart add-to-cart-btn d-flex-aic-jcc" data-id="<?= $row_data['_id'] ?>">
+            <i class="bi bi-bag"></i>
+          </div>
+      </div>
       <?php } }
       else{
         echo "
@@ -217,6 +247,37 @@
     </div>
     </div>
   </section>
+
+  <div class="subscribe">
+    <div class="subscribe-inner">
+      <div class="subscribe-banner-circle d-flex-aic-jcc">
+        <i class="bi bi-envelope-paper-fill"></i>
+      </div>
+      <div class="subscribe-block d-flex-aic-jcc">
+        <div class="subscribe-banner-text">
+          <h1 class="registr-typography">დარეგისტრირდით და მიიღეთ 25% იანი ფასდაკლება</h1>
+        </div>
+      </div>
+      <div class="subscribe-form d-flex-aic-jcc">
+        <span class="d-flex-fdc">
+          <h4>გამოიწერეთ სიახლები</h4>
+          <form class="form-email-confirm d-flex-aic" action="">
+            <input class="subs-input" type="text" placeholder="მეილი...">
+            <input class="subs-btn" type="button" value="გამოწერა">
+          </form>
+        </span>
+      </div>
+    </div>
+    <div class="subscribe-area-hero">
+      <img src="https://ciri.la-studioweb.com/wp-content/uploads/2022/09/m1-project-1.jpg" alt="">
+    </div>
+  </div>
+
+  <div class="subscribe-success-modal">
+    <div class="subscribe-success-modal-inner">
+      <div class="confirm-status"></div>
+    </div>
+  </div>
 
 <!-- footer start  -->
 <footer class="site-footer">
@@ -286,33 +347,96 @@
 
   <!-- local imports  -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="./javascript/URIjs.js"></script>
   <script src="./javascript/main.js"></script>
-  <script src="./javascript/owl.js"></script>
-      <script>
-        $(document).ready(function() {
+  <script>
+    $(document).ready(function() {
 
-          $(".ecommerce-slider").owlCarousel({
-            navigation : false, 
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem:true
-          });
+      $('.add-to-cart-btn').click(function(){
+          var product = $(this).attr('data-id')
+          $.ajax({
+            type: 'POST',
+            url: 'functions/addToCart.php',
+            data: {'quantity': 1,'add_to_cart': product},
+            beforeSend: function(){
 
-          $(".category-slider-road").owlCarousel({
-            items : 5,
-            lazyLoad : true,
-            navigation : false,
-          });
-    
-          $(".partners-slider").owlCarousel({
-            items : 5,
-            lazyLoad : true,
-            navigation : false,
-          });
+            },
+            success:  function(data){
+                $('.alert-popup').show()
+                $('.popup-message-body').text(data)
+
+                setTimeout(() => {
+                  $('.alert-popup').hide()
+                }, 2000);
+
+
+            }
+          })
         })
-        $(".category-menu-button").click(() => {
-          $('.category-dropdown-menu').slideToggle()
+
+      $('.subs-btn').click(function() {
+        var emailPattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+        if($('.subs-input').val() == ""){
+          if($('.empty-field-attention').length < 1){
+            $( "<p class='empty-field-attention'>შეავსეთ მეილის ველი</p>" ).insertBefore($('.form-email-confirm'))
+          }
+        }else if(!emailPattern.test($('.subs-input').val())){
+          if($('.empty-field-attention').length < 1){
+            $( "<p class='empty-field-attention'>შეუსაბამო მეილი</p>" ).insertBefore($('.form-email-confirm'))
+          }else{
+            $( ".empty-field-attention").text('შეუსაბამო მეილი')
+          }
+        }
+        else{
+          $('.subscribe-success-modal').animate({width: 'show'})
+            function emailCOnfirmPending(){
+              return new Promise(resolve => {
+              setTimeout(() => {
+                resolve('resolved');
+              }, 3000);
+            });
+            }
+            async function asyncCall() {
+            $('.confirm-status').html(`<img class="my-loader-spin" src="./assets/svg/loader.svg" >`)
+            const result = await emailCOnfirmPending();
+            $('.confirm-status').html(
+              `
+                <div class="success-message">
+                  <h1>სიახლეები გამოწერილია</h1>
+                  <img class="my-loader-spin-result-success" src="./assets/images/tick.png" >
+                </div>
+              `
+            )
+            await setTimeout(() => {
+              $('.subscribe-success-modal').hide()
+              $('.subs-input').val('')
+              $( ".empty-field-attention").hide()
+              }, 1000);
+          }
+          asyncCall()
+        }
+      })
+
+      $('.price-filter-btn').click(function(){
+        var parseqrst = URI(document.URL).query(true)
+        var minPrice = $('.max-price').val()
+        var maxPrice = $('.min-price').val()
+        if(minPrice != "" && maxPrice != ""){
+          $.ajax({
+          type: "POST",
+          url: "functions/filter.php",
+          data: {
+            'max': maxPrice,
+            'min': minPrice,
+            'search_keyword': parseqrst.search
+          },
+          success: function(data){
+            $('.search-result-cards').html(data)
+          }
         })
-        </script>
+        }
+      })
+    })
+    </script>
 </body>
 </html>
