@@ -1,13 +1,12 @@
 .site-footer{
-  background: #292929;
   padding: 50px 0;
+  border-top: 1px solid $--light_border;
   .site-footer-inner{
     display: grid;
     grid-template-columns: auto auto auto auto;
     .footer-drawer{
       padding: 0 20px;
       .footer-logo{
-        height: 100px;
         width: 100px;
         img{
           width: 100%;
@@ -17,18 +16,18 @@
       .footer-description{
         max-width: 400px;
         font-size: 12px;
-        color: #8e8e8e;
+        color: $--dark ;
         margin-top: 20px;
       }
       .footer-info-list{
         span{
           margin-top: 15px;
-          color: #bd8448;
+          color: $--dark;
         }
       }
       .footer-drawer-headline{
         h3{
-          color: #efefef;
+          color: $--dark;
         }
       }
       .footer-navLinks-list{
@@ -42,7 +41,7 @@
         }
       }
       .mapouter{
-        width: 350px;
+        max-width: 350px;
         height: 250px;
         .gmap_canvas{
           width: 100%;

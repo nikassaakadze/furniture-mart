@@ -20,6 +20,10 @@
 </head>
 <body>
 
+<div class="preloader">
+  <img src="./assets/images/loader.gif" alt="">
+</div>
+
 <!-- add to cart message start  -->
 <div class="alert-popup"> 
   <span class="popup-message-body"></span> 
@@ -28,58 +32,27 @@
 
 <!-- hidden responsive serch  bar  -->
 <div class="search-responsive-nav">
-  <div class="search-responsive-nav-inner container"></div>
-</div>
-<!-- hidden responsive serch  bar  -->
-
-<!-- site top bar start  -->
-<div class="site-top-bar">
-  <div class="d-flex-aic-jcsb top-bar-inner container">
-    <div class="bar-inner-left">
-      <span class="top-bar-item">
-        <a href="#">
-          <span>კონტაქტი</span>
-          <i class="bi bi-person-lines-fill"></i>
-        </a>
-      </span>
-      <span class="top-bar-item">
-        <a href="#">
-          <span>ხშირად დასმული კითხვები</span>
-          <i class="bi bi-patch-question"></i>
-        </a>
-      </span>
-      <span class="top-bar-item">
-        <a href="#">
-          <span>ბლოგი</span>
-          <i class="bi bi-flower3"></i>
-        </a>
-      </span>
-    </div>
-    <div class="bar-inner-right d-flex">
-      <span class="top-bar-item d-flex-aic">
-        <a href="#">
-          <i class="bi bi-headphones"></i>
-          <span>+ 995 123 456</span>
-        </a>
-      </span>
-      <span class="top-bar-item d-flex-aic">
-        <a href="#">
-          <i class="bi bi-envelope"></i>
-          <span>Furniture@example.org</span>
-        </a>
-      </span>
-    </div>
+  <div class="search-responsive-nav-inner container">
+  <form class="main-search-form d-flex-aic" action="./search.php" >
+    <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="search">
+    <button class="search-button"  type="submit">
+      <i class="bi bi-search"></i>
+    </button>
+  </form>
   </div>
 </div>
-<!-- site top bar end  -->
+<!-- hidden responsive serch  bar  -->
 
 <!-- site main header start  -->
 <div class="main-header">
   <header class="main-header-inner container d-flex-aic-jcsb">
+    <div class="menu-icon-hidden">
+      <i class="bi bi-list"></i>
+    </div>
     <div class="header-left-drawer">
       <div class="logo-drawer">
         <a href="./index.php">
-          <img data-src="./assets/svg/logo.svg" alt="">
+          <img src="./assets/svg/logo.svg" alt="">
         </a>
       </div>
     </div>
@@ -99,9 +72,6 @@
             <a href="">მისამართი</a>
           </li>
         </ul>
-        <div class="menu-icon-hidden">
-          <i class="bi bi-list"></i>
-        </div>
       </nav>
       <form class="main-search-form d-flex-aic" action="search.php" role="search">
         <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="text">
@@ -117,7 +87,7 @@
             ?>
              <div class="user-logged-in d-flex-aic">
               <div class="user-avatar">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
+                <img src="./assets/images/avatar.svg" alt="">
               </div>
               <small><?= $_SESSION['username']?></small>
               <small class="log-out">
@@ -148,10 +118,9 @@
 </div>
 <!-- site main header end  -->
 
-<div class="feed-section-headline">
-  <h1 class="section-hd-typography">ძებნა</h1>
+<div class=" container">
   <div class="breadcrumb">
-  <span><a style="color: #bd8448;" href="index.php">მთავარი</a></span>
+    <span><a style="color: #9cc55a;" href="index.php">მთავარი</a></span>
     <small><i class="bi bi-chevron-right"></i></small>
     <span>ძებნა</span>
   </div>
@@ -170,7 +139,6 @@
         <div class="search-area-keyowrd d-flex-aic">
           <h1>მოიძებნა <?=$numOfRows?> შედეგი (<mark><?= $_GET['search'] ?></mark>) </h1>
           <div class="price-filter d-flex-aic">
-            <span>ფასის ფილტრი:</span>
             <div class="price-filter-inputs d-flex-aic">
               <div class="input-field">
                 <span>₾:</span>
@@ -180,7 +148,7 @@
                 <span>₾:</span>
               <input type="number" placeholder="1000" class="max-price" >
               </div>
-              <button class="price-filter-btn" name='<?= $_GET['search'] ?>'>გაფილტრვა</button>
+              <button class="price-filter-btn" name='<?= $_GET['search'] ?>'>ფასის ფილტრი</button>
             </div>
           </div>
       </div>
@@ -195,45 +163,45 @@
             $_id = $row_data['_id'];
             $avaliable = $row_data['_id'];
           ?>
-        <div class='product-card'>
-          <a href='./product.php?product=<?= $row_data['_id'] ?>&color=<?= $row_data['color'] ?>' class='btn list-group-item-primary'>
-            <div class='flip-card'>
-              <div class='flip-card-inner'>
-                <div class='flip-card-front'>
-                  <img src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
+            <div class='product-card'>
+              <a href='./product.php?product=<?= $row_data['_id'] ?>&color=<?= $row_data['color'] ?>' class='btn list-group-item-primary'>
+                <div class='flip-card'>
+                  <div class='flip-card-inner'>
+                    <div class='flip-card-front'>
+                      <img data-src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
+                    </div>
+                    <div class='flip-card-back'>
+                      <img data-src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
+                    </div>
+                  </div>
                 </div>
-                <div class='flip-card-back'>
-                  <img src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
-                </div>
+              </a>
+              <div class='product-card-info'>
+                <h4 class='product-card-name'><?= $row_data['name'] ?></h4>
+                <div class="product-card-drawer d-flex-aic-jcsb">
+                <h6 class='product-card-price'><span class="valuta-icon">GEL</span> - <?= $row_data['price'] ?>.00</h6>
+                <?php
+                  if($row_data['avaliable'] > 0){
+                    echo "
+                      <div class='product-card-avaliability'>
+                        <span>მარაგშია: $avaliable</span>
+                      </div>
+                    ";
+                  }
+                  else{
+                    echo "
+                      <div class='product-card-avaliability not-avalibale'>
+                        <span>მარაგი ამოიწურა</span>
+                      </div>
+                    ";
+                  };
+                ?>
               </div>
-            </div>
-          </a>
-          <div class='product-card-info'>
-            <h4 class='product-card-name'><?= $row_data['name'] ?></h4>
+              </div>
+              <div class="product-card-tocart add-to-cart-btn d-flex-aic-jcc" data-id="<?= $row_data['_id'] ?>">
+                <i class="bi bi-bag"></i>
+              </div>
           </div>
-          <div class="product-card-drawer d-flex-aic-jcsb">
-          <h6 class='product-card-price'><span class="valuta-icon">₾</span> - <?= $row_data['price'] ?>.00</h6>
-            <?php
-            if ($row_data['avaliable'] > 0) {
-              echo "
-                  <div class='product-card-avaliability'>
-                    <span>მარაგშია: $avaliable</span>
-                  </div>
-                ";
-            } else {
-              echo "
-                  <div class='product-card-avaliability not-avalibale'>
-                    <span>მარაგი ამოიწურა</span>
-                  </div>
-                ";
-            }
-            ;
-            ?>
-          </div>
-          <div class="product-card-tocart add-to-cart-btn d-flex-aic-jcc" data-id="<?= $row_data['_id'] ?>">
-            <i class="bi bi-bag"></i>
-          </div>
-      </div>
       <?php } }
       else{
         echo "
@@ -258,18 +226,16 @@
           <h1 class="registr-typography">დარეგისტრირდით და მიიღეთ 25% იანი ფასდაკლება</h1>
         </div>
       </div>
-      <div class="subscribe-form d-flex-aic-jcc">
-        <span class="d-flex-fdc">
+      <div class="subscribe-form d-flex-fdc">
           <h4>გამოიწერეთ სიახლები</h4>
           <form class="form-email-confirm d-flex-aic" action="">
             <input class="subs-input" type="text" placeholder="მეილი...">
             <input class="subs-btn" type="button" value="გამოწერა">
           </form>
-        </span>
       </div>
     </div>
     <div class="subscribe-area-hero">
-      <img src="https://ciri.la-studioweb.com/wp-content/uploads/2022/09/m1-project-1.jpg" alt="">
+      <img data-src="./assets/images/subs-hero.webp" alt="">
     </div>
   </div>
 
@@ -344,6 +310,23 @@
 </footer>
 <!-- footer end  -->
 
+<section class="header-mobile-fix">
+  <div class="mobile-fix-inner container">
+    <div class="mobile-menu-item search-item-clickable">
+      <i class="bi bi-search"></i>
+    </div>
+    <div class="mobile-menu-item">
+      <a href="./shop.php">
+        <i class="bi bi-layout-split"></i>
+      </a>
+    </div>
+    <div class="mobile-menu-item">
+      <a href="./cart.php">
+        <i class="bi bi-cart"></i>
+      </a>
+    </div>
+  </div>
+</section>
 
   <!-- local imports  -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -397,7 +380,7 @@
             });
             }
             async function asyncCall() {
-            $('.confirm-status').html(`<img class="my-loader-spin" src="./assets/svg/loader.svg" >`)
+            $('.confirm-status').html(`<img class="my-loader-spin" src="./assets/images/loader.gif" >`)
             const result = await emailCOnfirmPending();
             $('.confirm-status').html(
               `

@@ -23,13 +23,13 @@ $(document).ready(function(){
       value_min = $('.range-min').val()
       $.ajax({
           type: 'POST',
-          url: 'functions/filter.php',
+          url: './functions/filter.php',
           data: {'category': category_id, 'color': color, 'min_val':value_min, 'max_val': value_max },
           beforeSend: function(){
             $('.shop-page-cards').html(
               `
                 <div class="filter-preloader-wrapper">
-                  <img src="https://powerusers.microsoft.com/t5/image/serverpage/image-id/118082i204C32E01666789C/image-size/large/is-moderation-mode/true?v=v2&px=999" alt="loading...">
+                  <img src="../assets/images/loader.gif" alt="loading...">
                 </div>
               `
             )
@@ -61,7 +61,7 @@ $(document).ready(function(){
           $('.shop-page-cards').html(
             `
               <div class="filter-preloader-wrapper">
-                <img src="https://powerusers.microsoft.com/t5/image/serverpage/image-id/118082i204C32E01666789C/image-size/large/is-moderation-mode/true?v=v2&px=999" alt="loading...">
+                <img src="../assets/images/loader.gif" alt="loading...">
               </div>
             `
           )
@@ -100,7 +100,7 @@ $(document).ready(function(){
           $('.shop-page-cards').html(
             `
               <div class="filter-preloader-wrapper">
-                <img src="https://powerusers.microsoft.com/t5/image/serverpage/image-id/118082i204C32E01666789C/image-size/large/is-moderation-mode/true?v=v2&px=999" alt="loading...">
+                <img src="../assets/images/loader.gif" alt="loading...">
               </div>
             `
           )
@@ -141,7 +141,7 @@ $(document).ready(function(){
           $('.shop-page-cards').html(
             `
               <div class="filter-preloader-wrapper">
-                <img src="./assets/svg/loader.svg" alt="loading...">
+                <img src="../assets/images/loader.gif" alt="loading...">
               </div>
             `
           )
@@ -181,7 +181,7 @@ $(document).ready(function(){
           $('.shop-page-cards').html(
             `
               <div class="filter-preloader-wrapper">
-                <img src="https://powerusers.microsoft.com/t5/image/serverpage/image-id/118082i204C32E01666789C/image-size/large/is-moderation-mode/true?v=v2&px=999" alt="loading...">
+                <img src="./assets/images/loader.gif" alt="loading...">
               </div>
             `
           )
@@ -193,6 +193,8 @@ $(document).ready(function(){
   })
 
   $('.remove-sticky-color').click(function(){
+
+    $('.color-option-circle').removeClass('active-color')
 
     var category = ''
     if($('.sticky-category').attr('data-id')){
@@ -212,7 +214,7 @@ $(document).ready(function(){
           $('.shop-page-cards').html(
             `
               <div class="filter-preloader-wrapper">
-                <img src="./assets/svg/loader.svg" alt="loading...">
+                <img src="../assets/images/loader.gif" alt="loading...">
               </div>
             `
           )

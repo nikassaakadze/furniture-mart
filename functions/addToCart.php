@@ -1,6 +1,6 @@
 <?php 
 session_start();
-  include('C:\xampp\htdocs\ecommerce\includes\connect.php');
+  include('../includes/connect.php');
   
   if(isset($_POST['add_to_cart'])){
     global $conn;

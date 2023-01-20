@@ -1,7 +1,7 @@
 <?php
   include("includes/connect.php");
   include("functions/common.php");
-  session_start()
+  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,10 @@
 </head>
 <body>
 
+<div class="preloader">
+  <img src="./assets/images/loader.gif" alt="">
+</div>
+
 <!-- add to cart message start  -->
 <div class="alert-popup"> 
   <span class="popup-message-body"></span> 
@@ -30,58 +34,27 @@
 
 <!-- hidden responsive serch  bar  -->
 <div class="search-responsive-nav">
-  <div class="search-responsive-nav-inner container"></div>
-</div>
-<!-- hidden responsive serch  bar  -->
-
-<!-- site top bar start  -->
-<div class="site-top-bar">
-  <div class="d-flex-aic-jcsb top-bar-inner container">
-    <div class="bar-inner-left">
-      <span class="top-bar-item">
-        <a href="#">
-          <span>კონტაქტი</span>
-          <i class="bi bi-person-lines-fill"></i>
-        </a>
-      </span>
-      <span class="top-bar-item">
-        <a href="#">
-          <span>ხშირად დასმული კითხვები</span>
-          <i class="bi bi-patch-question"></i>
-        </a>
-      </span>
-      <span class="top-bar-item">
-        <a href="#">
-          <span>ბლოგი</span>
-          <i class="bi bi-flower3"></i>
-        </a>
-      </span>
-    </div>
-    <div class="bar-inner-right d-flex">
-      <span class="top-bar-item d-flex-aic">
-        <a href="#">
-          <i class="bi bi-headphones"></i>
-          <span>+ 995 123 456</span>
-        </a>
-      </span>
-      <span class="top-bar-item d-flex-aic">
-        <a href="#">
-          <i class="bi bi-envelope"></i>
-          <span>Furniture@example.org</span>
-        </a>
-      </span>
-    </div>
+  <div class="search-responsive-nav-inner container">
+  <form class="main-search-form d-flex-aic" action="./search.php" >
+    <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="search">
+    <button class="search-button"  type="submit">
+      <i class="bi bi-search"></i>
+    </button>
+  </form>
   </div>
 </div>
-<!-- site top bar end  -->
+<!-- hidden responsive serch  bar  -->
 
 <!-- site main header start  -->
 <div class="main-header">
   <header class="main-header-inner container d-flex-aic-jcsb">
+    <div class="menu-icon-hidden">
+      <i class="bi bi-list"></i>
+    </div>
     <div class="header-left-drawer">
       <div class="logo-drawer">
         <a href="./index.php">
-          <img data-src="./assets/svg/logo.svg" alt="">
+          <img src="./assets/svg/logo.svg" alt="">
         </a>
       </div>
     </div>
@@ -101,12 +74,9 @@
             <a href="">მისამართი</a>
           </li>
         </ul>
-        <div class="menu-icon-hidden">
-          <i class="bi bi-list"></i>
-        </div>
       </nav>
-      <form class="main-search-form d-flex-aic" action="search.php" role="search">
-        <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="text">
+      <form class="main-search-form d-flex-aic" action="./search.php" >
+        <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="search">
         <button class="search-button"  type="submit">
           <i class="bi bi-search"></i>
         </button>
@@ -119,7 +89,7 @@
             ?>
              <div class="user-logged-in d-flex-aic">
               <div class="user-avatar">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
+                <img src="./assets/images/avatar.png" alt="">
               </div>
               <small><?= $_SESSION['username']?></small>
               <small class="log-out">
@@ -150,6 +120,8 @@
 </div>
 <!-- site main header end  -->
 
+</div>
+
 <div class="responsive-sidenav">
   <div class="responsive-sidenav-inner">
     <div class="responsive-sidenav-header d-flex">
@@ -166,7 +138,7 @@
   <div class="slider-banner-inner">
     <div class="slider-banner-item">
       <div class="banner-item-hero">
-        <img src="https://images.pexels.com/photos/2001944/pexels-photo-2001944.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+        <img data-src="./assets/images/kitchen-room.jpg" alt="">
       </div>
       <div class="banner-item-text">
         <div class="banner-item-text-inner">
@@ -174,7 +146,7 @@
           <h4 class="banner-description-typography-subheadline">დიდი ფასდაკლება სამზარეულოს კოლექციაზე</h4>
           <div class="banner-item-buttons d-flex-aic">
             <div class="banner-btn-act">
-              <a href="">კოლექციის ნახვა</a>
+              <a href="./shop.php">კოლექცია</a>
             </div>
             <div class="banner-btn-act">
               <a href="">შეძენა</a>
@@ -185,7 +157,7 @@
     </div>
     <div class="slider-banner-item">
       <div class="banner-item-hero">
-        <img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+        <img data-src="./assets/images/bedroom.jpg" alt="">
       </div>
       <div class="banner-item-text">
         <div class="banner-item-text-inner">
@@ -193,7 +165,7 @@
           <h4 class="banner-description-typography-subheadline">დიდი ფასდაკლება საძინებლის კოლექციაზე</h4>
           <div class="banner-item-buttons d-flex-aic">
             <div class="banner-btn-act">
-              <a href="">კოლექციის ნახვა</a>
+              <a href="./shop.php">კოლექცია</a>
             </div>
             <div class="banner-btn-act">
               <a href="">შეძენა</a>
@@ -204,7 +176,7 @@
     </div>
     <div class="slider-banner-item">
       <div class="banner-item-hero">
-        <img src="https://images.pexels.com/photos/133920/pexels-photo-133920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+        <img data-src="./assets/images/acceptable-room.jpg" alt="">
       </div>
       <div class="banner-item-text">
         <div class="banner-item-text-inner">
@@ -212,7 +184,7 @@
           <h4 class="banner-description-typography-subheadline">დიდი ფასდაკლება აივნის კოლექციაზე</h4>
           <div class="banner-item-buttons d-flex-aic">
             <div class="banner-btn-act">
-              <a href="">კოლექციის ნახვა</a>
+              <a href="./shop.php">კოლექცია</a>
             </div>
             <div class="banner-btn-act">
               <a href="">შეძენა</a>
@@ -235,10 +207,6 @@
 <!-- products feed start -->
 <section class="product-feed">
   <div class="product-feed-inner container">
-    <div class="feed-section-headline main-page-feed-header">
-      <h1 class="section-hd-typography">პოპულარული პროდუქცია</h1>
-      <p class="seaction-headline-ph">წარმოგიდგენთ ყველაზე მოთხოვნად პროდუქციას სტატისტიკის მიხედვით</p>
-    </div>
     <div class="product-cards-area">
       <?php
         $select_products = "Select * from  `products` order by rand() LIMIT 0,12";
@@ -261,9 +229,10 @@
               </a>
               <div class='product-card-info'>
                 <h4 class='product-card-name'><?= $row_data['name'] ?></h4>
-              </div>
-              <div class="product-card-drawer d-flex-aic-jcsb">
-              <h6 class='product-card-price'><span class="valuta-icon">₾</span> - <?= $row_data['price'] ?>.00</h6>
+                <div class="product-card-drawer d-flex-aic-jcsb">
+                <h6 class='product-card-price'>
+                  <span class="valuta-icon">GEL</span>
+                 - <?= $row_data['price'] ?>.00</h6>
                 <?php
                   if($row_data['avaliable'] > 0){
                     echo "
@@ -281,6 +250,7 @@
                   };
                 ?>
               </div>
+              </div>
               <div class="product-card-tocart add-to-cart-btn d-flex-aic-jcc" data-id="<?= $row_data['_id'] ?>">
                 <i class="bi bi-bag"></i>
               </div>
@@ -292,7 +262,7 @@
 <!-- products feed end -->
 
 <!-- shopping by styles start  -->
-<section class="shop-by-styles ">
+<section class="shop-by-styles">
   <div class="shop-by-styles-inner container">
     <div class="style-banner-window">
       <div class="styles-banner-info">
@@ -301,7 +271,7 @@
         <a href="./shop.php" class="shop-btn">შეიძნეთ ახლავე</a>
       </div>
       <div class="byStyle-banner-hero">
-        <img data-src="https://caketheme.com/html/ruper/media/banner/product-cat-4.jpg" alt="">
+        <img data-src="./assets/images/livingroomacc.jpg" alt="">
       </div>
     </div>
     <div class="style-banner-window small-window">
@@ -309,72 +279,77 @@
         <h1>არ ჩამორჩეთ სტილს​</h1>
       </div>
       <div class="byStyle-banner-hero">
-        <img data-src="https://caketheme.com/html/ruper/media/banner/banner-2.jpg" alt="">
+        <img data-src="./assets/images/green-pin.jpg" alt="">
       </div>
     </div>
   </div>
 </section>
-  <!-- shopping by styles end  -->
+<!-- shopping by styles end  -->
 
-<!-- benefs start  -->
-<div class="benefit-cards-wrapper">
-  <div class="benefit-cards-wrapper-inner container">
-    <div class="benefits-area-banner">
-      <img data-src="https://wpbingosite.com/wordpress/furnive/wp-content/uploads/2022/09/banner-13.jpg" alt="">
-    </div>
-    <div class="benefit-cards">
-      <div class="benefit-card">
-        <i class="bi bi-info-square"></i>
-        <h2>უფასო მიწოდება სრულ სერვისზე</h2>
-        <p>Your new FEST piece comes with a 3-Year Warranty, including at-home repair service.</p>
+<section class="details-item">
+  <div class="details-item-inner container">
+    <div class="details-item-drawer">
+      <div class="details-hero">
+        <img data-src="./assets/images/details.png" alt="">
+        <div class="detail-stick details-stick-lamp d-flex-aic-jcc">
+        <span>+</span>
+        <div class="details-stick-info d-flex">
+          <div class="details-stick-info-hero">
+            <img src="" alt="">
+          </div>
+          <div class="details-stick-info-body">
+            <h6>ლამპა</h6>
+            <p>
+              დაბალი ნათების დასადგამი ლამპა
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="benefit-card" style="background: #E8F6F3;">
-      <i class="bi bi-info-circle"></i>
-        <h2>გადაიხადეთ ონლაინ</h2>
-        <p>Your new FEST piece comes with a 3-Year Warranty, including at-home repair service.</p>
+        <div class="detail-stick details-stick-sofa d-flex-aic-jcc">
+        <span>+</span>
+        <div class="details-stick-info d-flex">
+          <div class="details-stick-info-hero">
+            <img src="" alt="">
+          </div>
+          <div class="details-stick-info-body">
+            <h6>ლამპა</h6>
+            <p>
+              დაბალი ნათების დასადგამი ლამპა
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="benefit-card" style="background: #FBEEE6;">
-      <i class="bi bi-optical-audio"></i>
-        <h2>2000 ზე მეტი დასახელების პროდუქტი</h2>
-        <p>Your new FEST piece comes with a 3-Year Warranty, including at-home repair service.</p>
       </div>
-      <div class="benefit-card" style="background: #FEF9E7;">
-      <i class="bi bi-vr"></i>
-        <h2>ისარგებლეთ განვადებით</h2>
-        <p>Your new FEST piece comes with a 3-Year Warranty, including at-home repair service.</p>
+      <div class="details-description">
+        <i class="bi bi-snow2"></i>
+        <h1>ზამთარი</h1>
+        <h3>როგორ შევხვდეთ ზამთარს: დეკორის და ინტერიერის ტრენდები 2023 წლისთვის</h3>
       </div>
     </div>
   </div>
-</div>
-<!-- benefs end  -->
+</section>
 
 <!-- partners section start  -->
 <div class="partners-section">
   <div class="partners-section-inner container">
     <div class="partners-slider">
       <div class="partner-item">
-        <img class="lazyOwl" data-src="https://rubiktheme.com/demo/rb_davici_demo/img/m/3.jpg" alt="">
+        <img class="lazyOwl" data-src="./assets/images/1.jpg" alt="">
       </div>
       <div class="partner-item">
-        <img class="lazyOwl" data-src="https://rubiktheme.com/demo/rb_davici_demo/img/m/4.jpg" alt="Lazy Owl Image">
+        <img class="lazyOwl" data-src="./assets/images/2.jpg" alt="1">
       </div>
       <div class="partner-item">
-        <img class="lazyOwl" data-src="https://rubiktheme.com/demo/rb_davici_demo/img/m/6.jpg" alt="Lazy Owl Image">
+        <img class="lazyOwl" data-src="./assets/images/1.jpg" alt="2">
       </div>
       <div class="partner-item">
-        <img class="lazyOwl" data-src="https://rubiktheme.com/demo/rb_davici_demo/img/m/7.jpg" alt="Lazy Owl Image">
+        <img class="lazyOwl" data-src="./assets/images/2.jpg" alt="3">
       </div>
       <div class="partner-item">
-        <img class="lazyOwl" data-src="https://rubiktheme.com/demo/rb_davici_demo/img/m/4.jpg" alt="Lazy Owl Image">
+        <img class="lazyOwl" data-src="./assets/images/1.jpg" alt="4">
       </div>
       <div class="partner-item">
-        <img class="lazyOwl" data-src="https://rubiktheme.com/demo/rb_davici_demo/img/m/9.jpg" alt="Lazy Owl Image">
-      </div>
-      <div class="partner-item">
-        <img class="lazyOwl" data-src="https://rubiktheme.com/demo/rb_davici_demo/img/m/4.jpg" alt="Lazy Owl Image">
-      </div>
-      <div class="partner-item">
-        <img class="lazyOwl" data-src="https://rubiktheme.com/demo/rb_davici_demo/img/m/9.jpg" alt="Lazy Owl Image">
+        <img class="lazyOwl" data-src="./assets/images/2.jpg" alt="5">
       </div>
     </div>
   </div>
@@ -429,7 +404,7 @@
       </div>
     </div>
     <div class="footer-drawer">
-      <!-- <div class="mapouter">
+      <div class="mapouter">
         <div class="gmap_canvas">
           <iframe 
             id="gmap_canvas" 
@@ -440,7 +415,7 @@
             marginwidth="0">
         </iframe>
       </div>
-    </div> -->
+    </div>
     </div>
   </div>
 </footer>
@@ -452,23 +427,32 @@
       <i class="bi bi-search"></i>
     </div>
     <div class="mobile-menu-item">
-      <i class="bi bi-layout-split"></i>
+      <a href="./shop.php">
+        <i class="bi bi-layout-split"></i>
+      </a>
     </div>
     <div class="mobile-menu-item">
-      <i class="bi bi-heart"></i>
-    </div>
-    <div class="mobile-menu-item">
-      <i class="bi bi-person-circle"></i>
+      <a href="./cart.php">
+        <i class="bi bi-cart"></i>
+      </a>
     </div>
   </div>
 </section>
+
+<div class="popup-overlay">
+  <div class="popup">
+    <p>ქუქი არის პატარა ფაილი, რომელსაც ჩვენი ვებსაიტი უგზავნის თქვენს მოწყობილობას,  ქუქი-ფაილები გვეხმარება მომხმარებლის მონაცემების დამუშავებაში.</p>
+    <div>
+    <a href="javascript:;" class="close">ვეთანხმები</a>
+    <a href="javascript:;" class="submit">არ ვეთანხმები</a>
+    </div>
+  </div>
+</div>
 
   <!-- local imports  -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="./javascript/main.js"></script>
   <script src="./javascript/owl.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js"></script>
-  <script type="text/javascript" src="./plugins/textanim.js"></script>
       <script>
 
         $(document).ready(function() {
@@ -477,7 +461,7 @@
           var product = $(this).attr('data-id')
           $.ajax({
             type: 'POST',
-            url: 'functions/addToCart.php',
+            url: './functions/addToCart.php',
             data: {'quantity': 1,'add_to_cart': product},
             beforeSend: function(){
 
@@ -496,10 +480,14 @@
         })
 
           $(".slider-banner-inner").owlCarousel({
-            navigation : false, 
-            slideSpeed : 3000,
+            navigation : false,
+            slideSpeed : 300,
             paginationSpeed : 400,
-            singleItem:true,
+            items : 1, 
+            itemsDesktop : false,
+            itemsDesktopSmall : false,
+            itemsTablet: false,
+            itemsMobile : false,
             paginationNumbers: true
           });
 
@@ -517,10 +505,6 @@
             navigation : false,
           });
           $(".partners-slider").trigger('owl.play',2000)
-        })
-
-        $(".category-menu-button").click(() => {
-          $('.category-dropdown-menu').slideToggle()
         })
     </script>
 </body>

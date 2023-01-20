@@ -63,10 +63,8 @@ include('C:\xampp\htdocs\ecommerce\includes\connect.php');
             ;
             ?>
           </div>
-          <div class="product-card-tocart">
-            <a class="d-flex-aic-jcc add-to-cart-button" href='./index.php?add_to_cart=<?= $row_data['_id'] ?>'>
-              <i class="bi bi-bag"></i>
-            </a>
+          <div class="product-card-tocart add-to-cart-btn d-flex-aic-jcc" data-id="<?= $row_data['_id'] ?>">
+            <i class="bi bi-bag"></i>
           </div>
       </div>
     <?php }}} ?>
@@ -124,10 +122,8 @@ if (isset($_POST['max']) || isset($_POST['min'])) {
             ;
             ?>
           </div>
-          <div class="product-card-tocart">
-            <a class="d-flex-aic-jcc add-to-cart-button" href='./index.php?add_to_cart=<?= $row_data['_id'] ?>'>
-              <i class="bi bi-bag"></i>
-            </a>
+          <div class="product-card-tocart add-to-cart-btn d-flex-aic-jcc" data-id="<?= $row_data['_id'] ?>">
+            <i class="bi bi-bag"></i>
           </div>
       </div>
     <?php }} }?>

@@ -1,15 +1,19 @@
 .search-area-keyowrd{
   background: #F2F4F4;
   padding: 10px;
-  margin: 30px 0;
+  margin: 0 0 30px 0;
   h1{
     font-size: 14px;
     color: rgb(25, 25, 25);
     mark{
-      color: coral;
+      color: $--dark;
       background: none;
     }
   }
+}
+
+.feed-section-headline{
+  margin-top: 30px;
 }
 
 .price-filter{
@@ -18,12 +22,13 @@
     font-size: 14px;
   }
   .price-filter-inputs{
-    margin-left: 20px;
     gap: .5em;
     .input-field{
-      border: 1px solid #D7DBDD;
+      border: 1px solid $--dark;
       padding: 0 10px;
-      background: white;
+      background: $--extra_light;
+      min-height: 45px;
+      max-height: 45px;
       span{
         color: #999;
       }
@@ -37,12 +42,11 @@
       button{
         border: none;
         padding: 0 10px;
-        color: rgb(0, 0, 0);
+        color: $--extra_light;
         border: 1px solid #D7DBDD;
         height: 45px;
         cursor: pointer;
-        background: #111;
-        color: rgb(255, 255, 255);
+        background: $--dark;
         font-family: mrglovani;
         font-size: 12px;
       }
@@ -71,36 +75,39 @@
     top: 20%;
     left: 10%;
     right: 10%;
-    background: white;
+    background: $--extra_light;
     display: grid;
-    grid-template-columns: 30% auto;
+    grid-template-columns: 30% 70%;
     .subscribe-block{
-      border-right: 1px solid #a4612b;
+      border-right: 1px solid $--dark;
       text-align: center;
       padding: 15px;
-      background: #292929;
+      background: $--dark;
       .registr-typography{
         font-size: 20px;
         line-height: 2.2rem;
-        color: whitesmoke;
+        color: $--fooggy_light;
       }
     }
     .subscribe-form{
       padding: 20px;
+      width: 100%;
+      justify-content: center;
       .form-email-confirm{
+        width: 100%;
         .subs-input, .subs-btn{
           margin-top: 15px;
           padding: 10px 20px;
-          border: 1px solid #a4612b;
+          border: 1px solid $--dark;
           height: 50px;
         }
         .subs-input{
-          width: 400px;
+          width: 100%;
         }
         .subs-btn{
-          background: #a4612b;
+          background: $--dark;
           padding: 15px 30px 10px 30px;
-          color: white;
+          color: $--extra_light;
           font-family: mrglovani;
           cursor: pointer;
         }
@@ -109,7 +116,7 @@
     .subscribe-banner-circle{
       width: 120px;
       height: 120px;
-      background: #222;
+      background: $--dark;
       position: absolute;
       border-radius: 50%;
       left: 0;

@@ -1,14 +1,18 @@
 .product-fullInfo-wrapper{
-  margin-top: 40px;
   margin-bottom: 50px;
   .product-fullInfo-inner{
     .product-description-drawer{
       display: grid;
       grid-template-columns: 48.5% 49%;
       gap: 2rem;
+      .slider-gallery{
+        display: grid;
+        grid-template-columns: auto;
+        overflow: hidden;
+      }
       .ecommerce-gallery{
         #sync1{
-          box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+          box-shadow: $--secondary_shadow;
           .item{
             width: 100%;
             height: 600px;
@@ -27,7 +31,7 @@
             width: fit-content !important;
           }
           .owl-item{
-            border: 1px solid rgba(153, 153, 153, 0.292);
+            border: 1px solid $--primary_border;
             height: 120px !important;
             .item{
               height: 120px !important;
@@ -57,7 +61,7 @@
       .product-specifications{
         .product-name-sc{
           h1{
-            color: #292929;
+            color: $--dark;
             font-size: 23px;
             font-weight: lighter;
           }
@@ -65,8 +69,8 @@
         .product-price-sc{
           margin: 10px 0;
           font-size: 22px;
-          color: #292929;
-          border-bottom: 1px solid #292929;
+          color: $--dark;
+          border-bottom: 1px solid $--dark;
           h3{
             font-weight: lighter;
           }
@@ -76,24 +80,24 @@
           p{
             line-height: 1.8;
             font-size: 13px;
-            color: #727272;
+            color: $--dark_secondary;
           }
         }
         .product-customization-sc{
           .product-cs-sc-headline{
-            border: 1px solid #E5E7E9;
+            border: 1px solid $--light_border;
             padding: 10px 20px;
-            color: #0f3424;
+            color: $--dark_green;
             cursor: pointer;
             font-size: 12px;
           }
           .product-cs-sc-content{
-            border: 1px solid #E5E7E9;
+            border: 1px solid $--light_border;
             border-top: none;
             h5{
               padding: 0 0 20px 0;
               font-weight: lighter;
-              color: #168456;
+              color: $--smooth_green;
             }
             display: none;
             padding: 30px 20px;
@@ -103,7 +107,7 @@
               max-height: 300px;
               min-height: 100px;
               padding: 10px;
-              border: 1px solid #e4e4e4;
+              border: 1px solid $--light_border;
             }
           }
         }
@@ -116,7 +120,7 @@
               gap: .7rem;
             }
             .size-option, .color-option{
-              border: 1px solid #cecece;
+              border: 1px solid $--light_border;
               width: 30px;
               height: 30px;
               border-radius: 50%;
@@ -135,26 +139,26 @@
           .product-toCart{
             gap: .5rem;
             .quantity-inputgroups{
-              border: 1px solid #999;
+              border: 1px solid $--primary_border;
               & :nth-child(2){
                 padding: 10px !important;
                 background: white;
-                color: #000;
+                color: $--dark;
               }
               input{
                 border: none;
                 padding: 10px 15px;
                 cursor: pointer;
-                color: rgb(7, 7, 7);
+                color: $--dark;
                 font-size: 20px;
                 background: transparent;
               }
             }
             .add-to-cart-btn, .goto-cart-btn{
               // flex: 1;
-              padding: 0 50px;
-              background: #292929 ;
-              color: white;
+              padding: 0 2.5vw;
+              background: $--dark ;
+              color: $--extra_light;
               cursor: pointer;
               font-size: 16px;
               border: none;
@@ -168,8 +172,8 @@
           margin: 20px 0;
           gap: .5rem;
           .add-to-option{
-            color: #555;
-            border: 1px solid #999;
+            color: $--dark_smooth;
+            border: 1px solid $--primary_border;
             padding: 10px 15px;
             cursor: pointer;
             i{
@@ -185,8 +189,8 @@
 .send-customization{
   width: 100%;
   padding: 10px 20px;
-  background: #bd8448;
-  color: white;
+  background: $--dark;
+  color: $--extra_light;
   border: none;
   cursor: pointer;
 }
@@ -194,7 +198,7 @@
 .product-page-tabs{
   padding-top: 50px;
   padding-bottom: 100px;
-  background: #F2F3F4;
+  background: $--fooggy_light;
 }
 
   ul#tabs-nav {
@@ -210,22 +214,22 @@
     cursor: pointer;
   }
   ul#tabs-nav li.active {
-    background: #bd8448;
+    background: $--dark;
     a{
-      color: white;
+      color: $--extra_light;
     }
   }
   #tabs-nav li a {
     text-decoration: none;
-    color: #292929;
+    color: $--dark;
     font-weight: lighter;
   }
 .tab-content {
   margin-top: 20px;
   p{
     margin-top: 10px;
-    border: 1px solid #EAEDED;
-    background: white;
+    border: 1px solid $--primary_border;
+    background: $--extra_light;
     color: 292929;
     padding: 20px;
     max-width: 600px;

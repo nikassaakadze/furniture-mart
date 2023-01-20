@@ -1,11 +1,11 @@
 <?php
   include('../includes/connect.php');
   global $conn;
-if($_POST['username'] == ''){
+if(isset($_POST['email']) && isset($_POST['email'])){
   $password = $_POST['password'];
   $email = $_POST['email'];
-  $ip = getIPAddress()
-  ;
+  $ip = getIPAddress();
+
   $select_users = "SELECT * from `user` WHERE email = '$email' && password = '$password' ";
   $check_user = mysqli_query($conn, $select_users);
   $is_user_exists = mysqli_num_rows($check_user);
@@ -25,18 +25,6 @@ if($_POST['username'] == ''){
   }else{
     echo "მომხმარებელი ვერ მოიძებნა";
   }
-}
-if($_POST['username'] != ""){
-  $password = $_POST['password'];
-  $email = $_POST['email'];
-  $phone = $_POST['phone'];
-  $name = $_POST['username'];
-  
-  $insert_user = "INSERT INTO `user` (username, password, user_phone, email) VALUES ('$name', '$password', '$phone','$email' ) ";
-  $insert = mysqli_query($conn, $insert_user);
-  session_start();
-  $_SESSION["username"] = $name;
-  echo "<script>window.open('index.php', '_self')</script>";
 }
 
 ?>

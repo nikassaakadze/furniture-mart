@@ -2,10 +2,12 @@
   .shop-page-header{
     display: flex;
     align-items: center;
-    padding: 20px ;
+    padding: 20px;
     gap: 1rem;
     margin-bottom: 10px;
     border: 1px solid #E5E7E9;
+    overflow-x: auto;
+    width: 100%;
   }
    .shop-page-content{
     display: grid;
@@ -14,8 +16,10 @@
   }
   .shop-page-cards{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1rem;
+    background: #ecf0f3;
+    padding: 15px;
     .product-card{
       max-width: 100% !important;
       .flip-card{
@@ -32,14 +36,11 @@
 }
 
 .active-category{
-  color: rgb(255, 102, 0);
+  color: #9cc55a;
 }
 
 .grid-cards-by-3{
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-}
-.grid-cards-by-4{
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
 }
 
 .shop-page-options{
@@ -56,6 +57,9 @@
         height: 20px;
       }
     }
+    .grid-active{
+      opacity: 1;
+    }
   }
 }
 .category-widget_category-listItem{
@@ -68,15 +72,16 @@
 .sticky-category, .sticky-price, .sticky-color{
   display: none;
   .sticky-body{
-    background: rgb(220, 220, 220);
+    background: #bddc9b;
     .sticky-name{
-      padding: 0 10px;
-      color: #000;
+      padding: 2px 10px 0 10px;
+      color: rgb(255, 253, 253);
     }
     .remove-sticky-category, .remove-sticky-price, .remove-sticky-color{
       padding: 13px 15px 8px 15px;
-      background: #111;
+      background: #bddc9b;
       cursor: pointer;
+      border-left: 1px solid #fff;
       i{
         color: white;
       }
@@ -103,45 +108,45 @@
 }
 
 .shop-page-content{
-  .shop-page-filters{
-    .price-widget{
-      margin-top: 20px;
-    }
-    .shop-page-widget{
-      border: 1px solid #E5E7E9;
-      padding: 25px;
-      .widget-headline{
-        border-bottom: 1px solid rgb(212, 212, 212);
-        padding-bottom: 10px;
-        h2{
-          font-size: 17px;
-          font-weight: lighter;
-        }
+}
+.shop-page-filters{
+  .price-widget{
+    margin-top: 20px;
+  }
+  .shop-page-widget{
+    border: 1px solid #E5E7E9;
+    padding: 25px;
+    .widget-headline{
+      border-bottom: 1px solid rgb(212, 212, 212);
+      padding-bottom: 10px;
+      h2{
+        font-size: 17px;
+        font-weight: lighter;
       }
-      .widget-content{
-        padding-top: 15px;
-        ul{
-          gap: .6rem;
-          li{
-            a{
-              span{
-                font-size: 13px;
-                color: #666;
-              }
+    }
+    .widget-content{
+      padding-top: 15px;
+      ul{
+        gap: .6rem;
+        li{
+          a{
+            span{
+              font-size: 13px;
+              color: #666;
             }
           }
         }
       }
-      .widget-body_color-list{
-        overflow-y: scroll;
-        height: 300px;
-        margin-top: 5px;
-        &::-webkit-scrollbar {
-          width: 3px;
-        }
-        &::-webkit-scrollbar-thumb {
-          background: #bd8448; 
-        }
+    }
+    .widget-body_color-list{
+      overflow-y: scroll;
+      height: 300px;
+      margin-top: 5px;
+      &::-webkit-scrollbar {
+        width: 3px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #bd8448; 
       }
     }
   }
@@ -226,71 +231,71 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 5px;
 }
 
-.details-widget{
-  background: rgb(14, 25, 37);
-  margin-top: 50px;
-  .details-widget-inner{
-    padding: 30px 0;
-    position: relative;
-    .detail-object-hero{
-      .teail-object-item{
-        width: 100%;
-      }
-    }
-      .details-stick-lamp{
-        right: 7%;
-        top: 15%;
-      }
-      .details-stick-decor{
-        left: 22%;
-        top: 30%;
-      }
-      .details-stick-sofa{
-        left: 55%;
-        top: 70%;
-      }
+// .details-widget{
+//   background: rgb(14, 25, 37);
+//   margin-top: 50px;
+//   .details-widget-inner{
+//     padding: 30px 0;
+//     position: relative;
+//     .detail-object-hero{
+//       .teail-object-item{
+//         width: 100%;
+//       }
+//     }
+//       .details-stick-lamp{
+//         right: 7%;
+//         top: 15%;
+//       }
+//       .details-stick-decor{
+//         left: 22%;
+//         top: 30%;
+//       }
+//       .details-stick-sofa{
+//         left: 55%;
+//         top: 70%;
+//       }
 
-      .detail-stick{
-        position: absolute;
-        width: 35px;
-        height: 35px;
-        background: #ccf75f;
-        border-radius: 50%;
-        cursor: pointer;
-        span{
-          color: rgb(0, 0, 0);
-        }
-        .details-stick-info{
-          display: none;
-          width: 300px;
-          height: 80px;
-          background: #111;
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          img{
-            height: 80px;
-            width: 100px;
-            object-fit: cover;
-          }
-          .details-stick-info-body{
-            padding: 10px;
-            h6{
-              color: white;
-              font-size: 15px;
-            }
-            p{
-              color: white;
-              font-size: 10px;
-              margin-top: 5px;
-            }
-          }
-        }
-          &:hover{
-            .details-stick-info{
-              display: flex !important;
-            }
-          }
-      }
-  }
-}
+//       .detail-stick{
+//         position: absolute;
+//         width: 35px;
+//         height: 35px;
+//         background: #ccf75f;
+//         border-radius: 50%;
+//         cursor: pointer;
+//         span{
+//           color: rgb(0, 0, 0);
+//         }
+//         .details-stick-info{
+//           display: none;
+//           width: 300px;
+//           height: 80px;
+//           background: #111;
+//           position: absolute;
+//           top: 20px;
+//           right: 20px;
+//           img{
+//             height: 80px;
+//             width: 100px;
+//             object-fit: cover;
+//           }
+//           .details-stick-info-body{
+//             padding: 10px;
+//             h6{
+//               color: white;
+//               font-size: 15px;
+//             }
+//             p{
+//               color: white;
+//               font-size: 10px;
+//               margin-top: 5px;
+//             }
+//           }
+//         }
+//           &:hover{
+//             .details-stick-info{
+//               display: flex !important;
+//             }
+//           }
+//       }
+//   }
+// }

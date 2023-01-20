@@ -21,6 +21,10 @@ session_start();
 </head>
 <body>
 
+<div class="preloader">
+  <img src="./assets/images/loader.gif" alt="">
+</div>
+
 <!-- add to cart message start  -->
 <div class="alert-popup"> 
   <span class="popup-message-body"></span> 
@@ -29,58 +33,27 @@ session_start();
 
 <!-- hidden responsive serch  bar  -->
 <div class="search-responsive-nav">
-  <div class="search-responsive-nav-inner container"></div>
-</div>
-<!-- hidden responsive serch  bar  -->
-
-<!-- site top bar start  -->
-<div class="site-top-bar">
-  <div class="d-flex-aic-jcsb top-bar-inner container">
-    <div class="bar-inner-left">
-      <span class="top-bar-item">
-        <a href="#">
-          <span>კონტაქტი</span>
-          <i class="bi bi-person-lines-fill"></i>
-        </a>
-      </span>
-      <span class="top-bar-item">
-        <a href="#">
-          <span>ხშირად დასმული კითხვები</span>
-          <i class="bi bi-patch-question"></i>
-        </a>
-      </span>
-      <span class="top-bar-item">
-        <a href="#">
-          <span>ბლოგი</span>
-          <i class="bi bi-flower3"></i>
-        </a>
-      </span>
-    </div>
-    <div class="bar-inner-right d-flex">
-      <span class="top-bar-item d-flex-aic">
-        <a href="#">
-          <i class="bi bi-headphones"></i>
-          <span>+ 995 123 456</span>
-        </a>
-      </span>
-      <span class="top-bar-item d-flex-aic">
-        <a href="#">
-          <i class="bi bi-envelope"></i>
-          <span>Furniture@example.org</span>
-        </a>
-      </span>
-    </div>
+  <div class="search-responsive-nav-inner container">
+  <form class="main-search-form d-flex-aic" action="./search.php" >
+    <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="search">
+    <button class="search-button"  type="submit">
+      <i class="bi bi-search"></i>
+    </button>
+  </form>
   </div>
 </div>
-<!-- site top bar end  -->
+<!-- hidden responsive serch  bar  -->
 
 <!-- site main header start  -->
 <div class="main-header">
   <header class="main-header-inner container d-flex-aic-jcsb">
+    <div class="menu-icon-hidden">
+      <i class="bi bi-list"></i>
+    </div>
     <div class="header-left-drawer">
       <div class="logo-drawer">
         <a href="./index.php">
-          <img data-src="./assets/svg/logo.svg" alt="">
+          <img src="./assets/svg/logo.svg" alt="">
         </a>
       </div>
     </div>
@@ -88,7 +61,7 @@ session_start();
       <nav class="status-bar-navigation">
         <ul class="status-bar-navigation-list d-flex">
           <li class="bar-navigation-list-item">
-          <a href="./index.php">მთავარი</a>
+            <a href="./index.php">მთავარი</a>
           </li>
           <li class="bar-navigation-list-item">
             <a href="./shop.php">შოპინგი</a>
@@ -100,9 +73,6 @@ session_start();
             <a href="">მისამართი</a>
           </li>
         </ul>
-        <div class="menu-icon-hidden">
-          <i class="bi bi-list"></i>
-        </div>
       </nav>
       <form class="main-search-form d-flex-aic" action="search.php" role="search">
         <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="text">
@@ -118,7 +88,7 @@ session_start();
             ?>
              <div class="user-logged-in d-flex-aic">
               <div class="user-avatar">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
+                <img src="./assets/images/avatar.svg" alt="">
               </div>
               <small><?= $_SESSION['username']?></small>
               <small class="log-out">
@@ -148,6 +118,18 @@ session_start();
   </header>
 </div>
 <!-- site main header end  -->
+
+<div class="responsive-sidenav">
+  <div class="responsive-sidenav-inner">
+    <div class="responsive-sidenav-header d-flex">
+      <span class="close-responsive-sidenav">
+        <i class="bi bi-x-lg"></i>
+      </span>
+    </div>
+    <div class="responsive-sidenav-body">
+    </div>
+  </div>
+</div>
 
   <!-- cart products start  -->
 
@@ -196,6 +178,7 @@ session_start();
               <i class="bi bi-trash"></i>
             </button>
           </div>
+          <div class="result"></div>
         </div>
         <?php                 
         }
@@ -222,14 +205,14 @@ session_start();
           <a href="checkout.php">შეძენა</a>
         </div>
         <div class="checkout-aval-cards">
-          <a href="">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/MasterCard_early_1990s_logo.png/1200px-MasterCard_early_1990s_logo.png" alt="">
+          <a href="#">
+            <img data-src="./assets/images/mastercard.png" alt="master-card">
           </a>
-          <a href="">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Visa_Logo.png/640px-Visa_Logo.png" alt="">
+          <a href="#">
+            <img data-src="./assets/images/visa.png" alt="visa-card">
           </a>
-          <a href="">
-            <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c530.png" alt="">
+          <a href="#">
+            <img data-src="./assets/images/visa1.png" alt="visa-card">
           </a>
         </div>
       </div>
@@ -316,10 +299,27 @@ session_start();
 </footer>
 <!-- footer end  -->
 
+<section class="header-mobile-fix">
+  <div class="mobile-fix-inner container">
+    <div class="mobile-menu-item search-item-clickable">
+      <i class="bi bi-search"></i>
+    </div>
+    <div class="mobile-menu-item">
+      <a href="./shop.php">
+        <i class="bi bi-layout-split"></i>
+      </a>
+    </div>
+    <div class="mobile-menu-item">
+      <a href="./cart.php">
+        <i class="bi bi-cart"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
   <!-- local imports  -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="./javascript/main.js"></script>
-  <script src="./javascript/owl.js"></script>
   <script>
 
     var incrementPlus;
@@ -354,12 +354,13 @@ session_start();
         beforeSend: function(){
           $('.total-amount-value').html(
             `
-              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif?20170503175831" class="amount-preloader" />
+              <img src="./assets/images/loader.gif" class="amount-preloader" />
             `
           )
         },
-        success: function(){
+        success: function(data){
           $('.total-amount-value').load(document.URL +  ' .total-amount-value');
+          $('.result').html(data)
       }
       })
     })

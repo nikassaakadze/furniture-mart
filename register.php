@@ -12,13 +12,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ავეჯის მაღაზია || ავტორიზაცია</title>
+  <title>ავეჯის მაღაზია || მთავარი გვერდი</title>
   <!-- set favicon -->
   <link rel="icon" type="image/png" href="./assets/ico/favicon.png">
-
   <!-- import local css file  -->
   <link rel="stylesheet" href="css/bundle.css">
-  
   <!-- import bootstrap icons   --CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
@@ -137,28 +135,35 @@
 <!-- register area   -->
 <section class="register-area">
   <div class="register-area-inner form-area container">
-    <div class="breadcrumb">
+  <div class="breadcrumb">
       <span><a style="color: #9cc55a;" href="index.php">მთავარი</a></span>
       <small><i class="bi bi-chevron-right"></i></small>
-      <span>ავტორიზაცია</span>
+      <span>რეგისტრაცია</span>
     </div>
     <form action="" class="user-form">
       <div class="custom-label">
-        <input class="user-email" type="text" placeholder="მეილი">
+        <input class="user-name" type="text" name="name" placeholder="სახელი">
       </div>
       <div class="custom-label">
-        <input class="user-pass" type="text" placeholder="პაროლი">
+        <input class="user-email" type="text" name="email" placeholder="მეილი">
       </div>
-      <button class="form-register__btn" name="authorization">
-        <span>ავტორიზაცია</span>
+      <div class="custom-label">
+        <input class="user-phone" type="text" name="mobile" placeholder="მობილური">
+      </div>
+      <div class="custom-label">
+        <input class="user-pass" type="password" name="password" placeholder="პაროლი">
+      </div>
+      <button class="form-register__btn">
+        <span>რეგისტრაცია</span>
         <i class="bi bi-box-arrow-in-right"></i>
       </button>
       <span class="no-user"></span>
       <div class="no-acc">
-        <span>არ გაქვთ ანგარიში?</span>
-        <a href="./register.php">დარეგისტრირდით</a>
+        <span>უკვე გაქვთ ანგარიში?</span>
+        <a href="./login.php">გაიარეთ ავტორიზაცია</a>
       </div>
     </form>
+    
   </div>
 </section>
 <!-- register area   -->
@@ -255,8 +260,7 @@
           e.preventDefault()
           var thisInput = $(this).parent(".user-form").find( $('input') );
           for(let i=0; i<thisInput.length; i++){
-            if(thisInput[i].value == ''){
-              e.preventDefault()
+            if(thisInput[i].value === ''){
               var parent = $(thisInput[i]).parent('.custom-label').find($('.empty-field-attention'))
               if(parent.length == 0){
                 var attention = $(thisInput[i]).attr('placeholder') + 'ს ' + 'ველი ცარიელია'
@@ -266,23 +270,21 @@
           }
           var _isAttenion = $(".user-form").find($('.empty-field-attention'))
           if(! _isAttenion.length > 0){
-            var useremail = $('.user-email').val()
+              var useremail = $('.user-email').val()
               var userpass = $('.user-pass').val()
+              var userphone = $('.user-phone').val()
+              var username = $('.user-name').val()
               $.ajax({
                 type: "POST",
-                url: 'functions/auth.php',
-                data: {'email': useremail, 'password': userpass},
+                url: './functions/register.php',
+                data: {'email': useremail, 'password': userpass, 'username': username, 'phone': userphone},
                 beforeSend: function(){
-                  $('.form-register__btn').text("მუშავდება")
                 },
                 success: function(data){
                 $('.no-user').html(data)
-                $('.form-register__btn').html(`
-                  <span>ავტორიზაცია</span>
-                  <i class="bi bi-box-arrow-in-right"></i>
-                `)
+                $('.form-register__btn').html()
               }
-              })
+            })
           }
         })
         $('input').keyup(function(){
@@ -297,7 +299,6 @@
 </html>
   <?php } else{
   echo "
-  <span>თქვენ უკვე გავლილი გაქვთ ავტორიზაცია</span>
       <a href='./index.php'><button>მთავარ გვერდზე დაბრუნება</button></a>
   ";
   } ?>

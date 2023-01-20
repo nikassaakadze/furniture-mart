@@ -21,6 +21,10 @@
 </head>
 <body>
 
+<div class="preloader">
+  <img src="./assets/images/loader.gif" alt="">
+</div>
+
 <!-- add to cart message start  -->
 <div class="alert-popup"> 
   <span class="popup-message-body"></span> 
@@ -29,58 +33,27 @@
 
 <!-- hidden responsive serch  bar  -->
 <div class="search-responsive-nav">
-  <div class="search-responsive-nav-inner container"></div>
-</div>
-<!-- hidden responsive serch  bar  -->
-
-<!-- site top bar start  -->
-<div class="site-top-bar">
-  <div class="d-flex-aic-jcsb top-bar-inner container">
-    <div class="bar-inner-left">
-      <span class="top-bar-item">
-        <a href="#">
-          <span>კონტაქტი</span>
-          <i class="bi bi-person-lines-fill"></i>
-        </a>
-      </span>
-      <span class="top-bar-item">
-        <a href="#">
-          <span>ხშირად დასმული კითხვები</span>
-          <i class="bi bi-patch-question"></i>
-        </a>
-      </span>
-      <span class="top-bar-item">
-        <a href="#">
-          <span>ბლოგი</span>
-          <i class="bi bi-flower3"></i>
-        </a>
-      </span>
-    </div>
-    <div class="bar-inner-right d-flex">
-      <span class="top-bar-item d-flex-aic">
-        <a href="#">
-          <i class="bi bi-headphones"></i>
-          <span>+ 995 123 456</span>
-        </a>
-      </span>
-      <span class="top-bar-item d-flex-aic">
-        <a href="#">
-          <i class="bi bi-envelope"></i>
-          <span>Furniture@example.org</span>
-        </a>
-      </span>
-    </div>
+  <div class="search-responsive-nav-inner container">
+  <form class="main-search-form d-flex-aic" action="./search.php" >
+    <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="search">
+    <button class="search-button"  type="submit">
+      <i class="bi bi-search"></i>
+    </button>
+  </form>
   </div>
 </div>
-<!-- site top bar end  -->
+<!-- hidden responsive serch  bar  -->
 
 <!-- site main header start  -->
 <div class="main-header">
   <header class="main-header-inner container d-flex-aic-jcsb">
+    <div class="menu-icon-hidden">
+      <i class="bi bi-list"></i>
+    </div>
     <div class="header-left-drawer">
       <div class="logo-drawer">
         <a href="./index.php">
-          <img data-src="./assets/svg/logo.svg" alt="">
+          <img src="./assets/svg/logo.svg" alt="">
         </a>
       </div>
     </div>
@@ -100,9 +73,6 @@
             <a href="">მისამართი</a>
           </li>
         </ul>
-        <div class="menu-icon-hidden">
-          <i class="bi bi-list"></i>
-        </div>
       </nav>
       <form class="main-search-form d-flex-aic" action="search.php" role="search">
         <input name="search" placeholder="საძიებო სიტყვა..." class="search-input" type="text">
@@ -118,7 +88,7 @@
             ?>
              <div class="user-logged-in d-flex-aic">
               <div class="user-avatar">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
+                <img data-src="./assets/images/avatar.svg" alt="">
               </div>
               <small><?= $_SESSION['username']?></small>
               <small class="log-out">
@@ -151,6 +121,11 @@
 
   <div class="product-fullInfo-wrapper">
     <div class="product-fullInfo-inner container">  
+    <div class="breadcrumb">
+      <span><a style="color: #9cc55a;" href="index.php">მთავარი</a></span>
+      <small><i class="bi bi-chevron-right"></i></small>
+      <span>შოპინგი</span>
+    </div>
       <?php
           global $conn;
           if(isset($_GET['product'])){
@@ -164,26 +139,28 @@
                   $description = $row_data['description'];
                   ?>
                   <div class='product-description-drawer'>
-                  <div class='ecommerce-gallery'>
+                    <div class="slider-gallery">
+                    <div class='ecommerce-gallery'>
               
-                    <div id='sync1' class='owl-carousel'>
-                      <div class='item'>
-                        <img data-src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
+                      <div id='sync1' class='owl-carousel'>
+                        <div class='item'>
+                          <img data-src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
+                        </div>
+                        <div class='item'>
+                          <img data-src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
+                        </div>
                       </div>
+            
+                      <div id='sync2' class='owl-carousel'>
                       <div class='item'>
-                        <img data-src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
+                          <img data-src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
+                        </div>
+                        <div class='item'>
+                          <img data-src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
+                        </div>
                       </div>
                     </div>
-          
-                    <div id='sync2' class='owl-carousel'>
-                    <div class='item'>
-                        <img data-src='./admin/images/<?= $row_data['hero_1'] ?>' class='card-img-top' alt=''>
-                      </div>
-                      <div class='item'>
-                        <img data-src='./admin/images/<?= $row_data['hero_2'] ?>' class='card-img-top' alt=''>
-                      </div>
                     </div>
-                  </div>
                   <div class='product-specifications'>
                     <div class='product-name-sc'>
                       <h1><?= $row_data['name'] ?></h1>
@@ -201,7 +178,7 @@
                       </div>
                       <div class='product-cs-sc-content'>
                         <h5>შეგიძლიათ გამოგვიგზავნოთ პროდუქტის თქვენეული ვერსია</h5>
-                        <textarea class="cs-textarea" name='' cols='30' rows='10' placeholder='მგონი...'></textarea>
+                        <textarea class="cs-textarea" name='' cols='30' rows='10' placeholder='ვერსია...'></textarea>
                         <button name="accept_customzt" class="send-customization">გაგზავნა</button>
                       </div>
                     </div>
@@ -247,8 +224,12 @@
                             $id = $row_data['product_id'];
                           }
                         if(isset($id) && $id == $product_id){
-                          echo " <a class='goto-cart-btn d-flex-aic' href='./cart.php'> კალათში გადასვლა <i class='bi bi-bag-check'></i></a>";
-                        }else{
+                          echo " 
+                          <a class='goto-cart-btn d-flex-aic' href='./cart.php'> 
+                            <span>კალათში გადასვლა</span>
+                            <i class='bi bi-bag-check'></i>
+                          </a>";
+                        }else{                                                          
                           echo "<div class='add-to-cart-btn d-flex-aic' data-id='$product_id'> კალათში დამატება <i class='bi bi-bag-check'></i></div>";
                         }
                         ?>
@@ -352,6 +333,25 @@
   </div>
 </footer>
 <!-- footer end  -->
+
+<section class="header-mobile-fix">
+  <div class="mobile-fix-inner container">
+    <div class="mobile-menu-item search-item-clickable">
+      <i class="bi bi-search"></i>
+    </div>
+    <div class="mobile-menu-item">
+      <a href="./shop.php">
+        <i class="bi bi-layout-split"></i>
+      </a>
+    </div>
+    <div class="mobile-menu-item">
+      <a href="./cart.php">
+        <i class="bi bi-cart"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
   <!-- local imports  -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="./javascript/owl.js"></script>
@@ -413,7 +413,7 @@
     }else{
       $.ajax({
         type: "POST",
-        url: "http://localhost/ecommerce/functions/insertcs.php",
+        url: "./functions/insertcs.php",
         data:{
           csinfo: $('.cs-textarea').val(),
           product: parseqrst.product
