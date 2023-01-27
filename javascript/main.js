@@ -120,7 +120,6 @@ function responsive(){
   }else{
     $('.responsive-sidenav').hide()
     $('.status-bar-navigation').append($('.status-bar-navigation-list'))
-    $('.header-middle-drawer').append($('.main-search-form'))
     $('.search-responsive-nav').hide()
   }
 }
