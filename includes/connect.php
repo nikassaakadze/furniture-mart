@@ -1,6 +1,6 @@
 <?php
 
-  $conn = mysqli_connect('localhost', 'root', '', 'furniture_market');
+  $conn = mysqli_connect('sql105.epizy.com', 'epiz_33479397', 'KaPMfMKShp2S', 'epiz_33479397_furniture_mart');
 
   if(!$conn){
     die(mysqli_connect($conn));
