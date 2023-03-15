@@ -1,0 +1,61 @@
+.search_result_page{
+ .search_result_page_inner{
+  .search_area_header{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: white;
+    padding: 20px 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    .search_reult_info{
+      .search_result_info_typograpy_1{
+        font-size: 20px;
+        font-weight: lighter;
+        mark{
+          background: #D5F5E3;
+          color: #239B56;
+          padding: 0 10px;
+        }
+      }
+    }
+    .price_filter{
+      .price_filter_inputs{
+        margin-left: 30px;
+        .max_field{
+          border-radius: 20px 0 0 20px;
+        }
+        .price_filter_btn{
+          border-radius: 0 20px 20px 0;
+          height: 37px;
+          padding: 0 15px;
+          background: #2E4053;
+          color: white;
+          margin-left: 1px;
+        }
+        .filter_input_field{
+          border: 1px solid #2E4053;
+          padding-right: 10px;
+          margin: 0 1px;
+          overflow: hidden;
+          span{
+            font-size: 12px;
+          }
+          input{
+            width: 50px;
+            height: 35px;
+            appearance: none;
+            padding-left: 10px;
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+            &[type=number] {
+              -moz-appearance: textfield;
+            }
+          }
+        }
+      }
+    }
+  }
+ } 
+}

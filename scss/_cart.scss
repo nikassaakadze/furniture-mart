@@ -1,0 +1,96 @@
+.cart_wrapper{
+  .cart_inner{
+    display: grid;
+    grid-template-columns: 65% auto;
+    .cart_items_feed{
+      .cart_item{
+        background: white;
+        padding: 10px 15px;
+        border-bottom: 1px solid #dcdfdf;
+        .cart_item_hero{
+          width: 100px;
+          height: 100px;
+          background: #F2F4F4;
+          padding: 10px;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+        .cart_item_price{
+          flex: .2;
+          padding: 0 10px;
+          .item_price_typography_6{
+            font-size: 15px;
+          }
+        }
+        .cart_item-quantity_widget{
+          padding-right: 10px;
+          .button-container{
+            border: 1px solid #BFC9CA;
+            .cart-qty-btn{
+              padding: 4px 15px;
+              cursor: pointer;
+              background: transparent;
+              font-size: 20px;
+            }
+            .qty{
+              width: 30px;
+              background: transparent;
+            }
+          }
+        }
+        .cart_item-remove{
+          min-width: 30px;
+          min-height: 30px;
+          border-radius: 50%;
+          background-color: #cc3c3c;
+          color: white;
+          border: 1px solid #BFC9CA;
+          cursor: pointer;
+        }
+      }
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+    .cart_sub_widget{
+      border: 1px solid #e9eaea;
+      background: white;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      height: 300px;
+      margin-left: 30px;
+      border-radius: 10px;
+      .cart_sub_widget_header{
+        padding: 20px ;
+        border-bottom: 1px solid #d2d0d0;
+      }
+      .cart_sub_widget_header_body{
+        padding: 20px ;
+        .cart_sub_widget_typography_5, span{
+          font-size: 14px;
+        }
+        .shipping_info{
+          margin: 17px 0;
+        }
+        .shipping_type{
+          border: 1px solid #d2d0d0;
+          padding: 10px 20px;
+          border-radius: 5px;
+        }
+        .checkout{
+          background: #111;
+          border-radius: 5px;
+          text-align: center;
+          padding: 10px 0;
+          margin-top: 15px;
+          cursor: pointer;
+          span{
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
